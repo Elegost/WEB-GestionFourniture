@@ -1,0 +1,114 @@
+<html>
+
+<head>
+   <title>Gestion de Liste</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="Squelette" />
+   <meta name="keywords" content="Squelette,html,documentation" />
+   <meta name="author" content="Marcellus Wallace" />
+   <link href="Style.css" type="text/css" rel="stylesheet" />
+   
+</head>
+<style>
+
+body
+{
+    font-family: Arial, Helvetica, sans-serif;;
+}
+.BlocLogin
+{
+    Border : groove 3px;
+    Padding:10px;
+    width:95%;
+    height:95%;
+    margin: auto;
+}
+.BlocList
+{
+    Border : groove 3px;
+    Padding:10px;
+    width:90%;
+    height:90%;
+    margin: auto;
+}
+
+#ButtonRetour
+{
+    text-align:center;
+    width:100%;
+    margin:10px;
+    border-radius:9px;  
+}
+
+input[name="login"]
+{
+    margin-bottom:10px;
+}
+
+label[for="password"]
+{
+    
+    
+    margin-left:-27px;
+    
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+#thelist2{
+    margin-top:30px;
+}
+#btn_valid{
+ margin-top:20px;
+ margin-bottom:10px;
+}
+#zone{
+    
+}
+
+.cb label{
+    display: block;
+    height: 20px;
+}
+.cb input{
+    float: left;
+}
+
+</Style>
+<body>
+   
+   <div class="BlocLogin" align='center'>
+     
+    <button id="btn" type="button"style="float: right;"><a href="Acceuil.html">Retour</a> </button>
+    
+     <select id="thelist1" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+  <option>Toutes les Matières</option>      
+  <option>Matière 1</option>
+  <option>Matière 2</option>
+</select>
+<select id="thelist2" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+  <option>Toutes les Classes</option>
+  <option>Terminale A</option>
+  <option>Terminale B</option>
+  <option>Premiere A</option>
+  <option>Premiere B</option>
+  <option>Seconde A</option>
+  <option>Seconde B</option>
+</select>
+<button id="btn_valid" type="button"<a href="Liste.html">Ajouter</a> </button>
+<button id="btn_Liste" type="button"<a href="Liste.html">Modifier</a> </button>
+<button id="btn_Graph" type="button"<a href="Liste.html">Supprimer</a> </button>
+ <div class="BlocList" align='left'>
+<p class="cb">
+    <input type="checkbox" name="choix1" value="1" id="cb_choix1_1"> <label for="cb_choix1_1">Liste Matière 1 _ Terminale A</label>
+    <input type="checkbox" name="choix2" value="2" id="cb_choix2_2"> <label for="cb_choix2_2">Liste Matière 1 _ Terminale B</label>
+    <input type="checkbox" name="choix3" value="3" id="cb_choix3_3"> <label for="cb_choix3_3">Liste Matière 2 _ Terminale A</label>
+</p>
+     </div>
+     </div>
+     
+</body>
+
+</html>

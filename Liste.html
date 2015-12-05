@@ -1,0 +1,101 @@
+<html>
+
+<head>
+   <title>Principal</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="Squelette" />
+   <meta name="keywords" content="Squelette,html,documentation" />
+   <meta name="author" content="Marcellus Wallace" />
+   <link href="Style.css" type="text/css" rel="stylesheet" />
+   
+</head>
+<style>
+
+.BtnDivEdition
+{
+    border-radius:12px;
+    margin:auto;
+    display:block;
+    width:70%;
+	padding:5px 0px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    height : 100%;
+    width : 100%;
+}
+
+table
+{
+    width:90%;
+    margin:auto;
+    display:block;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-radius:9px;
+    border-collapse: collapse;
+    text-align:center;
+}
+th, td {
+    padding: 3px 15px;
+}
+
+.BlocAffichageListe
+{
+    border:solid black 1px;
+    width:70%;
+    height:95%;
+}
+
+.BlocEdition
+{
+    border:solid black 1px;
+    width:20%;
+    height:95%;
+
+}
+
+.BlocAffichageListe, .BlocEdition
+{
+    display:inline-block;
+    vertical-align: top;
+}
+a{
+text-decoration:none;
+color:black;
+}
+
+</Style>
+<body>
+   	
+   	<div class="BlocAffichageListe">
+   	     <table class="TableAffichage">
+          <tr>
+            <th>Firstname</th>
+            <th>Lastname</th> 
+            <th>Points</th>
+          </tr>
+          <tr>
+            <td>Eve</td>
+            <td>Jackson</td> 
+            <td>94</td>
+          </tr>
+        </table>
+   	</div>
+   	<div class="BlocEdition">
+   	  <button id="ButtonseDeconnecter" type="button" class="BtnDivEdition">Se déconnecter</button>
+   	  <button id="ButtonRetourListeProf" type="button" class="BtnDivEdition">Retour à la liste des professeurs</button>
+   	</div>
+</body>
+
+
+
+</html>
