@@ -31,41 +31,15 @@ a{
     color:black;
 }
 
-/* AffichageListe */
-
-.BtnDivEdition
+#BtnRetour
 {
-    border-radius:12px;
-    margin:auto;
-    display:block;
-    width:70%;
-	padding:5px 0px;
-	margin-top:5px;
-	margin-bottom:5px;
+    text-align:center;
+    margin:10px;
+    border-radius:9px;
+	float:right;
 }
 
-.BlocAffichageListe
-{
-    border:solid black 1px;
-    width:70%;
-    height:95%;
-}
-
-.BlocEdition
-{
-    border:solid black 1px;
-    width:20%;
-    height:95%;
-
-}
-
-.BlocAffichageListe, .BlocEdition
-{
-    display:inline-block;
-    vertical-align: top;
-}
-
-/* GestionListe */
+/* GestionListeAdmin */
 .BlocGestionListe
 {
     Border : groove 3px;
@@ -85,18 +59,12 @@ a{
     margin: auto;
 }
 
-#BtnRetour
-{
-    text-align:center;
-    margin:10px;
-    border-radius:9px;
-	float:right;
-}
 
 #DDL_Classe
 {
     margin-top:30px;
 }
+
 
 .cb{
 	text-align:left;
@@ -108,4 +76,14 @@ a{
 }
 .cb input{
     float: left;
+}
+
+/* GraphiqueAdmin */
+.BlocAffGraphique
+{
+    Border : groove 3px;
+    Padding:10px;
+    width:95%;
+    height:95%;
+    margin: auto;
 }
