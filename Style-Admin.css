@@ -4,6 +4,15 @@ body
     font-family: Arial, Helvetica, sans-serif;
     height : 95%;
     width : 95%;
+	background-image: url("Image/background.png");
+	background-size: 100% 100%;
+
+}
+
+#logo
+{
+	width:45px;
+	height:45px;
 }
 
 table
@@ -31,13 +40,26 @@ a{
     color:black;
 }
 
-#BtnRetour
+.BlocEdition
 {
-    text-align:center;
-    margin:10px;
-    border-radius:9px;
-	float:right;
+    border:solid black 1px;
+    width:20%;
+    height:95%;
+		background:#fff; 
+
 }
+
+.BtnDivEdition
+{
+    border-radius:12px;
+    margin:auto;
+    display:block;
+    width:70%;
+	padding:5px 0px;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
 
 /* GestionListeAdmin */
 .BlocGestionListe
@@ -48,6 +70,7 @@ a{
     height:95%;
     margin: auto;
 	text-align:center;
+	background:#fff; 
 }
 
 .BlocList
@@ -57,8 +80,14 @@ a{
     width:90%;
     height:90%;
     margin: auto;
+	background:#fff; 
 }
 
+.BlocGestionListe, .BlocEdition
+{
+    display:inline-block;
+    vertical-align: top;
+}
 
 #DDL_Classe
 {
@@ -83,7 +112,15 @@ a{
 {
     Border : groove 3px;
     Padding:10px;
-    width:95%;
+    width:70%;
     height:95%;
     margin: auto;
+	background:#fff; 
 }
+
+.BlocAffGraphique, .BlocEdition
+{
+	display:inline-block;
+    vertical-align: top;
+}
+

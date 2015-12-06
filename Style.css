@@ -4,6 +4,14 @@ body
     font-family: Arial, Helvetica, sans-serif;
     height : 95%;
     width : 95%;
+	background-image: url("Image/background.png");
+	background-size: 100% 100%;
+}
+
+#logo
+{
+	width:69px;
+	height:69px;
 }
 
 table
@@ -31,7 +39,13 @@ a{
     color:black;
 }
 
-/* AffichageListe */
+.BlocEdition
+{
+    border:solid black 1px;
+    width:20%;
+    height:95%;
+	background:#fff;
+}
 
 .BtnDivEdition
 {
@@ -44,19 +58,14 @@ a{
 	margin-bottom:5px;
 }
 
+
+/* AffichageListe */
 .BlocAffichageListe
 {
     border:solid black 1px;
     width:70%;
     height:95%;
-}
-
-.BlocEdition
-{
-    border:solid black 1px;
-    width:20%;
-    height:95%;
-
+		background:#fff; 
 }
 
 .BlocAffichageListe, .BlocEdition
@@ -68,29 +77,29 @@ a{
 /* GestionListe */
 .BlocGestionListe
 {
-    Border : groove 3px;
+    Border : solid black 1px;
     Padding:10px;
-    width:95%;
+    width:70%;
     height:95%;
     margin: auto;
 	text-align:center;
+	background:#fff; 
 }
 
 .BlocList
 {
-    Border : groove 3px;
+    Border : solid black 1px;
     Padding:10px;
     width:90%;
     height:90%;
     margin: auto;
+	background:#fff; 
 }
 
-#BtnRetour
+.BlocEdition, .BlocGestionListe
 {
-    text-align:center;
-    margin:10px;
-    border-radius:9px;
-	float:right;
+	display: inline-block;
+	vertical-align: top;
 }
 
 #DDL_Classe
