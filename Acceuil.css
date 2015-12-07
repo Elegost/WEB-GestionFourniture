@@ -41,7 +41,7 @@ label[for="password"]
     margin-left:-35px;    
 }
 
-#btnSeConnecter{
+.btnSeConnecter{
     margin-top:15px;
 	text-align:center;
     width:60%;

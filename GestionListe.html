@@ -15,13 +15,12 @@
 
 	<div class="BlocEdition">
 		<img id="logo" src="Image/logo.jpg" >
-		<button id="BtnRetour" type="button" class="BtnDivEdition"><a href="Acceuil.html">Retour</a> </button>
+		<FORM METHOD="LINK" ACTION="AffichageListe(Prof).html">
+			<INPUT  id="BtnRetour" class="BtnDivEdition" TYPE="submit" VALUE="Retour">
+		</FORM>
 	</div>
 
    <div class="BlocGestionListe">
-     
-    
-    
     <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
 	  <option>Toutes les Matières</option>      
 	  <option>Matière 1</option>
