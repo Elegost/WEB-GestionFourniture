@@ -15,8 +15,14 @@
    <div class="BlocLogin" align='center'>
     	<label for="login" class="LabelLogin" >login : </label><input type="text" name="login"><br>
     	<label for="password" id="LabelPassword">password : </label><input type="password" name="Password"><br>
-        <button id="btnSeConnecter" type="button"><a href="AffichageListe.html">Se connecter</a></button>
-		<button id="btnSeConnecterAdmin" type="button"><a href="GestionListeAdmin.html">Se connecter (ADMIN)</a></button>
+		<FORM METHOD="LINK" ACTION="AffichageListe.html">
+			<INPUT  id="btnSeConnecter" TYPE="submit" VALUE="Se connecter">
+		</FORM>
+		<FORM METHOD="LINK" ACTION="GestionListeAdmin.html">
+			<INPUT  id="btnSeConnecter" TYPE="submit" VALUE="Se connecter (ADMIN)">
+		</FORM>
+		
+		
     </div>
 </body>
 
