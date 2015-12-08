@@ -1,7 +1,7 @@
 <html>
 
 <head>
-   <title>AffichageListe</title>
+   <title>AffichageListe(Prof)</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta name="description" content="Squelette" />
    <meta name="keywords" content="Squelette,html,documentation" />
@@ -14,25 +14,27 @@
 
 	<div class="BlocEdition">
 		<img id="logo" src="Image/logo.jpg" >
-   	  <button id="ButtonseDeconnecter" type="button" class="BtnDivEdition"><a href="Acceuil.html">Se déconnecter</button>
-   	  <button id="ButtonRetourListeProf" type="button" class="BtnDivEdition">Retour à la liste des professeurs</button>
+		<FORM METHOD="LINK" ACTION="Acceuil.html">
+			<INPUT  id="BtnSeDeconnecter" class="BtnDivEdition" TYPE="submit" VALUE="Se déconnecter">
+		</FORM>
+   	  <button id="ButtonRetourListeProf" type="button" class="BtnDivEdition">Retour à la liste des classes</button>
    	</div>
 	
    	<div class="BlocAffichageListe">
    	     <table class="TableAffichage">
 		<label id="label_IdTableau" text="Liste des professeurs vous demandant des fournitures"/>
           <tr>
-            <th>M. / Mme.</th>
+            <th>Classe</th>
             <th>Matière</th> 
             <th>Nombre de fournitures</th>
           </tr>
           <tr>
-            <td>Hervé pichot</td>
+            <td>Terminale A</td>
             <td>Anglais</td> 
             <td>3</td>
           </tr>
 		  <tr>
-            <td>Jean-francine de la boétie</td>
+            <td>Première C</td>
             <td>Philosophie</td> 
             <td>63</td>
           </tr>
