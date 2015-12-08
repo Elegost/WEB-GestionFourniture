@@ -34,6 +34,14 @@ th, td {
     padding: 3px 15px;
 }
 
+th{
+	background:gray;
+}
+
+td{
+	background:white;
+}
+
 a{
     text-decoration: none;
     color:black;
