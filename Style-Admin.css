@@ -4,15 +4,22 @@ body
     font-family: Arial, Helvetica, sans-serif;
     height : 95%;
     width : 95%;
-	background-image: url("Image/background.png");
+	background-image: url("Image/background.jpg");
 	background-size: 100% 100%;
-
 }
 
 #logo
 {
-	width:45px;
-	height:45px;
+	width:36x;
+	height:36px;
+    float : left;
+}
+
+#label_IdTableau
+{
+    text-align: center;
+    display:block;
+    margin:5px;
 }
 
 table
@@ -35,58 +42,143 @@ th, td {
     padding: 3px 15px;
 }
 
+th{
+	background:gray;
+}
+
+td{
+	background:white;
+}
+
 a{
     text-decoration: none;
     color:black;
 }
 
-.BlocEdition
+/* AffichageListe */
+.BlocHeader
 {
-    border:solid black 1px;
-    width:10%;
-    height:95%;
-		background:#fff; 
-
+    border: solid black 1px;
+    width: 100%;
+    height: 5%;
+    background: #fff;
+    margin: 5px 0px;
 }
 
-.BtnDivEdition
+.BlocAffichageListe
+{
+    border:solid black 1px;
+    width:100%;
+    height:85%;
+	background:#fff; 
+}
+
+#ButtonRetourListeProf
+{
+    float:right;
+    border-radius:12px;
+    margin:auto;
+    display:block;
+	padding:5px 5px;
+	margin:5px;
+}
+
+#ButtonAjouterListe
 {
     border-radius:12px;
     margin:auto;
     display:block;
-    width:80%;
-	padding:5px 0px;
-	margin-top:5px;
-	margin-bottom:5px;
+	padding:5px 5px;
+	margin:5px;
 }
 
+.icone_table
+{
+    height: 15px;
+    width: 15px;
+}
+
+.RowTableEdition
+{
+    width: 10px;
+}
+
+label[for="IdUser"]
+{
+    float:right;
+}
+
+input[id="ButtonSeDeconnecter"]
+{
+    float:right;
+    border-radius:12px;
+    margin:auto;
+    display:block;
+	padding:5px 0px;
+	margin:5px;
+}
 
 /* GestionListeAdmin */
 .BlocGestionListe
 {
-    Border : groove 3px;
-    Padding:10px;
-    width:95%;
-    height:95%;
+    Border : solid black 1px;
+    width:100%;
+    height:85%;
     margin: auto;
 	text-align:center;
 	background:#fff; 
 }
 
-.BlocList
+.BlocSelectionListeClasseProfesseur
 {
-    Border : groove 3px;
-    Padding:10px;
-    width:90%;
-    height:90%;
-    margin: auto;
-	background:#fff; 
+    width: 95%;
+    border-bottom: solid black 1px;
+    padding: 10px;
 }
 
-.BlocGestionListe, .BlocEdition
+.BlocListeClasseProfesseur
 {
-    display:inline-block;
-    vertical-align: top;
+    Border : solid black 1px;
+    float: left;
+    Padding:10px;
+    width:30%;
+    height:90%;
+    margin: 10px;
+}
+
+.BlocCreationListeClasse, .BlocCreationListeProfesseur
+{
+    Border : solid black 1px;
+    float: left;
+    Padding:10px;
+    width:60%;
+    height:90%;
+    margin: 10px; 
+}
+
+#BtnAjouterFourniture
+{
+    width: 90%;
+}
+
+#BtnValiderListeFourniture
+{
+    float: left;
+    position:relative;
+    margin-top:90%;   
+}
+
+#BtnAnnulerListeFourniture
+{
+    float: right;
+    position:relative;
+    margin-top:90%;       
+}
+
+.BlocEdition, .BlocGestionListe
+{
+	display: inline-block;
+	vertical-align: top;
 }
 
 #DDL_Classe
@@ -94,17 +186,21 @@ a{
     margin-top:30px;
 }
 
-
-.cb{
+.cbProfesseur, .cbClasse{
 	text-align:left;
 }
 
-.cb label{
+.cbProfesseur label, .cbClasse label{
     display: block;
     height: 20px;
 }
-.cb input{
+.cbProfesseur input, .cbClasse input{
     float: left;
+}
+
+#ButtonseDeconnecter
+{
+    width: 10%;
 }
 
 /* GraphiqueAdmin */

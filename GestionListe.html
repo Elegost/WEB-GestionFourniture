@@ -10,42 +10,63 @@
 </head>
 
 <body>
-
-	<div class="BlocEdition">
-		<img id="logo" src="Image/logo.jpg" >
-		<FORM METHOD="LINK" ACTION="AffichageListe(Prof).html">
-			<INPUT  id="BtnRetour" class="BtnDivEdition" TYPE="submit" VALUE="Retour">
-		</FORM>
+   
+   <div class="BlocHeader">
+		 <img id="logo" src="Image/logo.jpg" >
+		 <form action="Acceuil.html" method="post">
+			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
+		 </form>
+		<label id="IdUser" for="IdUser">Bonjour [Prénom] [Nom] </label>
 	</div>
 
    <div class="BlocGestionListe">
-    <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
-	  <option>Toutes les Matières</option>      
-	  <option>Matière 1</option>
-	  <option>Matière 2</option>
-	</select>
+	  <div class="BlocListeClasse">
+	  <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+		<option>Toutes les Matières</option>      
+		<option>Matière 1</option>
+		<option>Matière 2</option>
+	  </select>
+  
+	  <select id="DDL_Classe" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+		<option>Toutes les Classes</option>
+		<option>Terminale A</option>
+		<option>Terminale B</option>
+		<option>Premiere A</option>
+		<option>Premiere B</option>
+		<option>Seconde A</option>
+		<option>Seconde B</option>
+	  </select><br/>
+  
+	  <p class="cb">
+		  <input type="checkbox" name="choix1" value="1" id="cb_choix1_1"> <label for="cb_choix1_1">Terminale A(Anglais)</label>
+		  <input type="checkbox" name="choix2" value="2" id="cb_choix2_2"> <label for="cb_choix2_2">Terminale B(Philosophie)</label>
+		  <input type="checkbox" name="choix3" value="3" id="cb_choix3_3"> <label for="cb_choix3_3">Terminale C(Espagnol)</label>
+	  </p>
+	  
+	  <a href="AffichageListe(Prof).html"><button id="BtnValiderListeFourniture" type="button"> Valider </button></a>
+	  <a href="AffichageListe(Prof).html"><button id="BtnAnnulerListeFourniture" type="button"> Annuler </button></a>
 
-	<select id="DDL_Classe" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
-	  <option>Toutes les Classes</option>
-	  <option>Terminale A</option>
-	  <option>Terminale B</option>
-	  <option>Premiere A</option>
-	  <option>Premiere B</option>
-	  <option>Seconde A</option>
-	  <option>Seconde B</option>
-	</select>
-
-	<button id="BtnAjouter" type="button"> Ajouter </button>
-	<button id="BtnModifier" type="button"> Modifier</button>
-	<button id="BtnSupprimer" type="button"> Supprimer </button>
- 
-	<div class="BlocList">
-		<p class="cb">
-		    <input type="checkbox" name="choix1" value="1" id="cb_choix1_1"> <label for="cb_choix1_1">Liste Matière 1 _ Terminale A</label>
-		    <input type="checkbox" name="choix2" value="2" id="cb_choix2_2"> <label for="cb_choix2_2">Liste Matière 1 _ Terminale B</label>
-		    <input type="checkbox" name="choix3" value="3" id="cb_choix3_3"> <label for="cb_choix3_3">Liste Matière 2 _ Terminale A</label>
-		</p>
-    </div>
+	  
+	  </div>
+	  
+	  <div class="BlocCreationListeFourniture">
+			  <table class="TableCreation" >
+				  <label id="label_IdTableau">Liste des fournitures</label>
+					<tr>
+					  <th>Intitulé</th>
+					  <th>Nombre</th> 
+					  <th>Description</th>
+					</tr>
+					<tr>
+					  <td><input type="text" name="Intitulé" value="Crayon HB"></td>
+					  <td><input type="text" name="Nombre" value="5"></td> 
+					  <td><input type="text" name="Description" value="crayon"></td>
+					</tr>
+					<tr>
+					  <td colspan=3><button id="BtnAjouterFourniture" type="button"> + </button></td>
+					</tr>
+			  </table>
+		  </div>
    </div>
      
 </body>

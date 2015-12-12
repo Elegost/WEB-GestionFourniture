@@ -4,16 +4,15 @@ body
     font-family: Arial, Helvetica, sans-serif;
     height : 95%;
     width : 95%;
-	background-image: url("Image/background.png");
+	background-image: url("Image/background.jpg");
 	background-size: 100% 100%;
 }
 
 #logo
 {
-	width:69px;
-	height:69px;
-    display:block;
-    margin:auto;
+	width:36x;
+	height:36px;
+    float : left;
 }
 
 #label_IdTableau
@@ -56,31 +55,11 @@ a{
     color:black;
 }
 
-.BlocEdition
-{
-    border:solid black 1px;
-    width:10%;
-    height:85%;
-	background:#fff;
-}
-
-.BtnDivEdition
-{
-    border-radius:12px;
-    margin:auto;
-    display:block;
-    width:80%;
-	padding:5px 0px;
-	margin-top:5px;
-	margin-bottom:5px;
-}
-
-
 /* AffichageListe */
 .BlocHeader
 {
     border: solid black 1px;
-    width: 95%;
+    width: 100%;
     height: 5%;
     background: #fff;
     margin: 5px 0px;
@@ -89,24 +68,47 @@ a{
 .BlocAffichageListe
 {
     border:solid black 1px;
-    width:85%;
+    width:100%;
     height:85%;
 	background:#fff; 
 }
 
-.BlocAffichageListe, .BlocEdition
+#ButtonRetourListeProf
 {
-    display:inline-block;
-    vertical-align: top;
+    float:right;
+    border-radius:12px;
+    margin:auto;
+    display:block;
+	padding:5px 5px;
+	margin:5px;
+}
+
+#ButtonAjouterListe
+{
+    border-radius:12px;
+    margin:auto;
+    display:block;
+	padding:5px 5px;
+	margin:5px;
+}
+
+.icone_table
+{
+    height: 15px;
+    width: 15px;
+}
+
+.RowTableEdition
+{
+    width: 10px;
 }
 
 label[for="IdUser"]
 {
     float:right;
-    margin: 10px;
 }
 
-button[name="ButtonSeDeconnecter"]
+input[id="ButtonSeDeconnecter"]
 {
     float:right;
     border-radius:12px;
@@ -120,22 +122,50 @@ button[name="ButtonSeDeconnecter"]
 .BlocGestionListe
 {
     Border : solid black 1px;
-    Padding:10px;
-    width:70%;
+    width:100%;
     height:85%;
     margin: auto;
 	text-align:center;
 	background:#fff; 
 }
 
-.BlocList
+.BlocListeClasse
 {
     Border : solid black 1px;
+    float: left;
     Padding:10px;
-    width:90%;
+    width:30%;
     height:90%;
-    margin: auto;
-	background:#fff; 
+    margin: 10px;
+}
+
+.BlocCreationListeFourniture
+{
+    Border : solid black 1px;
+    float: left;
+    Padding:10px;
+    width:60%;
+    height:90%;
+    margin: 10px; 
+}
+
+#BtnAjouterFourniture
+{
+    width: 90%;
+}
+
+#BtnValiderListeFourniture
+{
+    float: left;
+    position:relative;
+    margin-top:100%;   
+}
+
+#BtnAnnulerListeFourniture
+{
+    float: right;
+    position:relative;
+    margin-top:100%;       
 }
 
 .BlocEdition, .BlocGestionListe
