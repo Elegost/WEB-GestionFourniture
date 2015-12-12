@@ -70,7 +70,8 @@ a{
     border:solid black 1px;
     width:100%;
     height:85%;
-	background:#fff; 
+	background:#fff;
+    overflow: auto;
 }
 
 #ButtonRetourListeProf
@@ -126,7 +127,8 @@ input[id="ButtonSeDeconnecter"]
     height:85%;
     margin: auto;
 	text-align:center;
-	background:#fff; 
+	background:#fff;
+    overflow: auto;
 }
 
 .BlocListeClasse
@@ -137,6 +139,7 @@ input[id="ButtonSeDeconnecter"]
     width:30%;
     height:90%;
     margin: 10px;
+    overflow: auto;
 }
 
 .BlocCreationListeFourniture
@@ -146,7 +149,8 @@ input[id="ButtonSeDeconnecter"]
     Padding:10px;
     width:60%;
     height:90%;
-    margin: 10px; 
+    margin: 10px;
+    overflow: auto;
 }
 
 #BtnAjouterFourniture
