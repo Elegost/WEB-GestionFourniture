@@ -7,6 +7,19 @@
    <meta name="keywords" content="Squelette,html,documentation" />
    <meta name="author" content="Marcellus Wallace" />
    <link href="Style-Admin.css" type="text/css" rel="stylesheet" />
+   
+   <script>
+		 function createPDF()
+		 {
+			window.location.assign('CreatePDF.php');
+		 }
+		 
+		 function createCSV()
+		 {
+			window.location.assign('CreateCSV.php');
+		 }
+   </script>
+   
 </head>
 
 <body>
@@ -25,13 +38,8 @@
 		 <button id="BtnAfficherListeClasse" type="button" > Liste des classes </button>
 		 <button id="BtnAfficherListeProfesseurs" type="button" > Liste des professeurs </button>
 		 <a href="GraphiqueAdmin.html"><button id="BtnGraphique" type="button">Graphique</button></a>
-		 <button id="BtnImportListeElèves" type="button" > Importer liste élèves </button>
-		 <script>
-		 function open_script(){
-			window.location.assign('CreatePDF.php');
-		 }
-		 </script>
-		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="open_script()">Imprimer un fichier PDF</button>
+		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
+		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>
 		 
 	  </div>
 	  
