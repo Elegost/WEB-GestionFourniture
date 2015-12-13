@@ -1,0 +1,2 @@
+eleve 1;terminal 1
+eleve 2;terminal B
