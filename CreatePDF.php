@@ -48,7 +48,7 @@ class PDF extends FPDF
     $pdf->AddPage();
     //display the title with a border around it
     $pdf->SetXY(50,20);
-    $pdf->Cell(100,10,'Liste des eleves',1,0,'C',0);
+    $pdf->Cell(100,10,'Liste des Fournitures',1,0,'C',0);
     $pdf->Ln();
     $pdf->Ln();
 
