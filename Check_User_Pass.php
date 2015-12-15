@@ -21,4 +21,24 @@ $sqlquery = "SELECT (LOGIN, PASSWORD) FROM $tbl_name WHERE LOGIN='$login'";
 $resquery = mysql_query($sqlquery);
 $count=mysql_num_rows($resquery);
 
+if($count==1){
+    $row = mysql_fetch_assoc($resquery);
+    //if (crypt($password, $row['password']) == $row['password']){
+    if($password == $row['PASSWORD'])
+    {
+        session_register("login");
+        session_register("password"); 
+        echo "Login Successful";
+        return true;
+    }
+    else {
+        echo "Wrong Username or Password";
+        return false;
+    }
+}
+else{
+    echo "Wrong Username or Password";
+    return false;
+}
+
 ?>
