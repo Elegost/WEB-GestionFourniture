@@ -1,0 +1,317 @@
+<html>
+<head>
+   <title>Gestion de Liste (ADMIN)</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <meta name="description" content="Squelette" />
+   <meta name="keywords" content="Squelette,html,documentation" />
+   <meta name="author" content="Marcellus Wallace" />
+   <link href="Style-Admin.css" type="text/css" rel="stylesheet" />
+   
+   <script>
+	  
+		 function addNewRow()
+		 {
+			var table = document.getElementById("table_ajoutprofesseur");
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount - 1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			cell1.innerHTML = '<input type="text" name="NomProf">';
+			cell2.innerHTML = '<input type="text" name="Matière">';
+			cell3.innerHTML = '<input type="text" name="EmailProf">';
+			cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+		  }
+		
+		 function removeRow(row)
+		 {
+			 var table = document.getElementById("table_ajoutprofesseur");
+			 var rowCount = table.rows.length;
+			 var i=row.parentNode.parentNode.rowIndex;
+			 if (rowCount > 3)
+			 {
+			   table.deleteRow(i);
+			 }		  
+		 }
+		 
+		 function createPDF()
+		 {
+			window.location.assign('CreatePDF.php');
+		 }
+		 
+		 function createCSV()
+		 {
+			window.location.assign('CreateCSV.php');
+		 }
+		 
+		 
+   </script>		 
+</head>
+
+<body>
+    <div class="BlocHeader">
+		 <img id="logo" src="Image/logo.jpg" >
+		 <form action="Acceuil.php" method="post">
+			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
+		 </form>
+		<label id="IdUser" for="IdUser">Bonjour [MAIL]</label>
+	</div>
+
+   <div class="BlocGestionListe">
+	  <div class="BlocListeClasseProfesseur">
+		 
+	  <div class="BlocSelectionListeClasseProfesseur">
+		 <button id="BtnAfficherListeClasse" type="button" > Liste des classes </button>
+		 <button id="BtnAfficherListeProfesseurs" type="button" > Liste des professeurs </button>
+		 <a href="GraphiqueAdmin.php"><button id="BtnGraphique" type="button">Graphique</button></a>
+		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
+		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>
+		 
+	  </div>
+	  
+	  <div class="BlocListeClasse" style="display:none">
+		 <button id="BtnAjouterClasse" type="button" > Ajouter classe </button>
+		 <button id="BtnSupprimerClasse" type="button" > Supprimer classe(s) </button></br>
+		 
+		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+		   <option>Toutes les Matières</option>      
+		   <?php
+			   $servername = "localhost";
+			   $username = "AllUser";
+			   $password = "";
+			   $dbname = "GestionFourniture";						
+			   // Create connection
+			   $conn = new mysqli($servername, $username, $password, $dbname);
+			   // Check connection
+			   if ($conn->connect_error)
+			   {
+				   die("Connection failed: " . $conn->connect_error);
+			   } 						
+			   $sql = "SELECT Matiere FROM Professeur WHERE 1";
+			   $result = $conn->query($sql);						
+			   if ($result->num_rows > 0)
+			   {			
+				   while($row = $result->fetch_assoc())
+				   {
+					 echo "<option>" . $row["Matiere"] . "</option>";
+				   }
+			   }
+			   $conn->close();
+			?>
+		 </select>
+		 
+		 <p class="cbClasse">
+			 <?php
+			$servername = "localhost";
+			$username = "AllUser";
+			$password = "";
+			$dbname = "GestionFourniture";						
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error)
+			{
+				die("Connection failed: " . $conn->connect_error);
+			}
+			$sql = "SELECT Intitule FROM Classe WHERE 1";
+			if ($DDL_Matière != '')
+			   $sql .= " AND Matiere='$DDL_Matière'";
+			if ($DDL_Classe != '')
+			   $sql .= " AND Classe='$DDL_Classe'";
+			$result = $conn->query($sql);						
+			if ($result->num_rows > 0)
+			{			
+				while($row = $result->fetch_assoc())
+				{
+				  echo "<label>";
+				  echo '<input type="checkbox" value="1">';
+				  echo $row["Intitule"];
+				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
+				  echo "</label>";
+				}
+			}
+			else
+			{
+				echo "0 results";
+			}
+			$conn->close();
+		 ?>
+		 </p>
+	  </div>
+	  
+	  <div class="BlocListeProfesseur">
+		 <button id="BtnSupprimerProfesseur" type="button" > Supprimer professeur(s) sélectionné(s)</button></br>
+		 
+		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+		   <option>Toutes les Matières</option>
+			<?php
+			   $servername = "localhost";
+			   $username = "AllUser";
+			   $password = "";
+			   $dbname = "GestionFourniture";						
+			   // Create connection
+			   $conn = new mysqli($servername, $username, $password, $dbname);
+			   // Check connection
+			   if ($conn->connect_error)
+			   {
+				   die("Connection failed: " . $conn->connect_error);
+			   } 						
+			   $sql = "SELECT Matiere FROM Professeur WHERE 1";
+			   $result = $conn->query($sql);						
+			   if ($result->num_rows > 0)
+			   {			
+				   while($row = $result->fetch_assoc())
+				   {
+					 echo "<option>" . $row["Matiere"] . "</option>";
+				   }
+			   }
+			   $conn->close();
+			?>
+		 </select>
+		 
+		 <select id="DDL_Classe" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+		   <option>Toutes les Classes</option>
+		<?php
+			   $servername = "localhost";
+			   $username = "AllUser";
+			   $password = "";
+			   $dbname = "GestionFourniture";						
+			   // Create connection
+			   $conn = new mysqli($servername, $username, $password, $dbname);
+			   // Check connection
+			   if ($conn->connect_error)
+			   {
+				   die("Connection failed: " . $conn->connect_error);
+			   } 						
+			   $sql = "SELECT Intitule FROM Classe WHERE 1";
+			   $result = $conn->query($sql);						
+			   if ($result->num_rows > 0)
+			   {			
+				   while($row = $result->fetch_assoc())
+				   {
+					 echo "<option>" . $row["Intitule"] . "</option>";
+				   }
+			   }
+			   $conn->close();
+			?>
+		 </select>
+		 
+		 <p class="cbProfesseur">
+		 <?php
+			$servername = "localhost";
+			$username = "AllUser";
+			$password = "";
+			$dbname = "GestionFourniture";						
+			// Create connection
+			$conn = new mysqli($servername, $username, $password, $dbname);
+			// Check connection
+			if ($conn->connect_error)
+			{
+				die("Connection failed: " . $conn->connect_error);
+			}
+			$sql = "SELECT Intitule, Matiere FROM Classe, Professeur WHERE Professeur.IDProfesseur = 0";
+			if ($DDL_Matière != '')
+			   $sql .= " AND Matiere='$DDL_Matière'";
+			if ($DDL_Classe != '')
+			   $sql .= " AND Classe='$DDL_Classe'";
+			$result = $conn->query($sql);						
+			if ($result->num_rows > 0)
+			{			
+				while($row = $result->fetch_assoc())
+				{
+				  echo "<label>";
+				  echo '<input type="checkbox" value="1">';
+				  echo $row["Intitule"] . "(" . $row["Matiere"] . ")";
+				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
+				  echo "</label>";
+				}
+			}
+			else
+			{
+				echo "0 results";
+			}
+			$conn->close();
+		 ?>
+		 </p>
+	  </div>
+	  
+	  <button id="BtnValiderListeFourniture" type="button" class="BtnValider"> Valider </button>
+	  </div>
+	  
+	  <div class="BlocCreationListeClasse" style="display:none">
+			  <table class="TableCreation" >
+				  <label id="label_IdTableau">Nouvelle classe</label>
+					<tr>
+					  <th>Intitulé</th>
+					  <th>Niveau</th>
+					</tr>
+					<tr>
+					  <td><input type="text" name="Intitulé" value="Terminal A"></td>
+					  <td><input type="text" name="Niveau" value="Terminal"></td> 
+					</tr>
+			  </table>
+			  
+			   <table class="TableCreation" >
+				  <label id="label_IdTableau">Liste des professeurs lié à la classe</label>
+					<tr>
+					  <th>M. / Mme.</th>
+					  <th>Matière</th>
+					  <th>Email</th>
+					</tr>
+					<tr>
+					  <td><input type="text" name="NomProf" value="Marie Mariage"></td>
+					  <td><input type="text" name="Matière" value="Anglais"></td>
+					  <td><input type="text" name="EmailProf" value="MarieMariage@u-psud.fr"></td>
+					</tr>
+					<tr>
+					  <td colspan=3><button id="BtnAjouterFourniture" type="button"> + </button></td>
+					</tr>
+			  </table>
+			   
+			    <table class="TableCreation" >
+				  <label id="label_IdTableau">Liste des élèves de la classe</label>
+					<tr>
+					  <th>M. / Mme.</th>
+					  <th>Email</th>
+					</tr>
+					<tr>
+					  <td><input type="text" name="NomElève" value="Pierre André"></td>
+					  <td><input type="text" name="Email" value="pandré@u-psud.fr"></td>
+					</tr>
+					<tr>
+					  <td colspan=3><button id="BtnAjouterFourniture" type="button"> + </button></td>
+					</tr>
+			  </table>
+		  </div>
+	  
+	  <div class="BlocCreationListeProfesseur">
+			  <table id="table_ajoutprofesseur" class="TableCreation" >
+				  <label id="label_IdTableau">Liste des professeurs à ajouter</label>
+					<tr>
+					  <th>M. / Mme.</th>
+					  <th>Matière</th>
+					  <th>Email</th>
+					</tr>
+					<tr>
+						<td><input type="text" name="NomProf"></td>
+						<td><input type="text" name="Matière"></td>
+						<td><input type="text" name="EmailProf"></td>
+						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
+					</tr>
+				  
+					<tr>
+					  <td colspan=3><button id="BtnAjouterProfesseur" type="button" onclick="addNewRow()"> + </button></td>
+					</tr>
+			  </table>
+		  </div>
+   </div>
+</body>
+
+</html>
+
+
+
+
+
+

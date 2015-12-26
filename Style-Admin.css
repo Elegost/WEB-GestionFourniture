@@ -161,23 +161,19 @@ input[id="ButtonSeDeconnecter"]
     margin: 10px; 
 }
 
-#BtnAjouterFourniture
+#BtnAjouterProfesseur
 {
     width: 90%;
 }
 
-#BtnValiderListeFourniture
+.BtnValider
 {
     float: left;
-    position:relative;
-    margin-top:85%;   
 }
 
-#BtnAnnulerListeFourniture
+.Btnretour
 {
     float: right;
-    position:relative;
-    margin-top:85%;       
 }
 
 .BlocEdition, .BlocGestionListe

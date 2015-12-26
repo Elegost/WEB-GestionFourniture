@@ -15,13 +15,13 @@
    <div class="BlocLogin" align='center'>
     	<label for="login" class="LabelLogin" >login : </label><input type="text" name="login"><br>
     	<label for="password" id="LabelPassword">password : </label><input type="password" name="Password"><br>
-		<FORM METHOD="LINK" ACTION="AffichageListe.html">
+		<FORM METHOD="LINK" ACTION="AffichageListe.php">
 			<INPUT  id="btnSeConnecter" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter">
 		</FORM>
-		<FORM METHOD="LINK" ACTION="AffichageListe(Prof).html">
+		<FORM METHOD="LINK" ACTION="AffichageListe(Prof).php">
 			<INPUT  id="btnSeConnecter(PROF)" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter (PROF)">
 		</FORM>
-		<FORM METHOD="LINK" ACTION="GestionListeAdmin.html">
+		<FORM METHOD="LINK" ACTION="GestionListeAdmin.php">
 			<INPUT  id="btnSeConnecter(ADMIN)" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter (ADMIN)">
 		</FORM>
     </div>
