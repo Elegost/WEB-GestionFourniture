@@ -9,7 +9,7 @@
    
    <script>
 	  
-		 function addNewRow()
+		 function addNewRow_tableajoutprofesseur()
 		 {
 			var table = document.getElementById("table_ajoutprofesseur");
 			var rowCount = table.rows.length;
@@ -23,8 +23,34 @@
 			cell3.innerHTML = '<input type="text" name="EmailProf">';
 			cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
 		  }
+		  
+		  function addNewRow_tableprofesseurClasse() {
+            var table = document.getElementById("Table_professeurClasse");
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount - 1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			var cell4 = row.insertCell(3);
+			cell1.innerHTML = '<input type="text" name="NomProf">';
+			cell2.innerHTML = '<input type="text" name="Matière">';
+			cell3.innerHTML = '<input type="text" name="EmailProf">';
+			cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+          }
+		  
+		  function addNewRow_tableEleveClasse() {
+            var table = document.getElementById("Table_eleveClasse");
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount - 1);
+			var cell1 = row.insertCell(0);
+			var cell2 = row.insertCell(1);
+			var cell3 = row.insertCell(2);
+			cell1.innerHTML = '<input type="text" name="NomEleve">';
+			cell2.innerHTML = '<input type="text" name="Email">';
+			cell3.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+          }
 		
-		 function removeRow(row)
+		 function removeRow(tableID, row)
 		 {
 			 var table = document.getElementById("table_ajoutprofesseur");
 			 var rowCount = table.rows.length;
@@ -34,6 +60,28 @@
 			   table.deleteRow(i);
 			 }		  
 		 }
+		 
+		 function handleButtonClick_AfficherClasse() {
+            var div = document.getElementById("BlocListeClasse");
+			div.style.display = "inline";
+            div = document.getElementById("BlocListeProfesseur");
+			div.style.display = "none";
+			div = document.getElementById("BlocCreationListeClasse");
+			div.style.display = "inline";
+			div = document.getElementById("BlocCreationListeProfesseur");
+			div.style.display = "none";	
+         }
+		 
+		 function handleButtonClick_AfficherProfesseur() {
+            var div = document.getElementById("BlocListeClasse");
+			div.style.display = "none";
+            div = document.getElementById("BlocListeProfesseur");
+			div.style.display = "inline";
+			div = document.getElementById("BlocCreationListeClasse");
+			div.style.display = "none";
+			div = document.getElementById("BlocCreationListeProfesseur");
+			div.style.display = "inline";	
+         }
 		 
 		 function createPDF()
 		 {
@@ -62,20 +110,19 @@
 	  <div class="BlocListeClasseProfesseur">
 		 
 	  <div class="BlocSelectionListeClasseProfesseur">
-		 <button id="BtnAfficherListeClasse" type="button" > Liste des classes </button>
-		 <button id="BtnAfficherListeProfesseurs" type="button" > Liste des professeurs </button>
+		 <button id="BtnAfficherListeClasse" type="button" onclick="handleButtonClick_AfficherClasse()" > Liste des classes </button>
+		 <button id="BtnAfficherListeProfesseurs" type="button" onclick="handleButtonClick_AfficherProfesseur()" > Liste des professeurs </button>
 		 <a href="GraphiqueAdmin.php"><button id="BtnGraphique" type="button">Graphique</button></a>
 		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
 		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>
 		 
 	  </div>
 	  
-	  <div class="BlocListeClasse" style="display:none">
-		 <button id="BtnAjouterClasse" type="button" > Ajouter classe </button>
+	  <div id="BlocListeClasse" class="BlocListeClasse" >
 		 <button id="BtnSupprimerClasse" type="button" > Supprimer classe(s) </button></br>
 		 
-		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
-		   <option>Toutes les Matières</option>      
+		 <select id="DDL_Niveau" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
+		   <option>Tous les Niveaux</option>      
 		   <?php
 			   $servername = "localhost";
 			   $username = "AllUser";
@@ -88,13 +135,13 @@
 			   {
 				   die("Connection failed: " . $conn->connect_error);
 			   } 						
-			   $sql = "SELECT Matiere FROM Professeur WHERE 1";
+			   $sql = "SELECT DISTINCT Niveau FROM Classe WHERE 1";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
 			   {			
 				   while($row = $result->fetch_assoc())
 				   {
-					 echo "<option>" . $row["Matiere"] . "</option>";
+					 echo "<option>" . $row["Niveau"] . "</option>";
 				   }
 			   }
 			   $conn->close();
@@ -140,7 +187,7 @@
 		 </p>
 	  </div>
 	  
-	  <div class="BlocListeProfesseur">
+	  <div id="BlocListeProfesseur" class="BlocListeProfesseur" style="display:none">
 		 <button id="BtnSupprimerProfesseur" type="button" > Supprimer professeur(s) sélectionné(s)</button></br>
 		 
 		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
@@ -239,53 +286,56 @@
 	  <button id="BtnValiderListeFourniture" type="button" class="BtnValider"> Valider </button>
 	  </div>
 	  
-	  <div class="BlocCreationListeClasse" style="display:none">
-			  <table class="TableCreation" >
-				  <label id="label_IdTableau">Nouvelle classe</label>
-					<tr>
-					  <th>Intitulé</th>
-					  <th>Niveau</th>
-					</tr>
-					<tr>
-					  <td><input type="text" name="Intitulé" value="Terminal A"></td>
-					  <td><input type="text" name="Niveau" value="Terminal"></td> 
-					</tr>
-			  </table>
-			  
-			   <table class="TableCreation" >
-				  <label id="label_IdTableau">Liste des professeurs lié à la classe</label>
-					<tr>
-					  <th>M. / Mme.</th>
-					  <th>Matière</th>
-					  <th>Email</th>
-					</tr>
-					<tr>
-					  <td><input type="text" name="NomProf" value="Marie Mariage"></td>
-					  <td><input type="text" name="Matière" value="Anglais"></td>
-					  <td><input type="text" name="EmailProf" value="MarieMariage@u-psud.fr"></td>
-					</tr>
-					<tr>
-					  <td colspan=3><button id="BtnAjouterFourniture" type="button"> + </button></td>
-					</tr>
-			  </table>
+	  <div id="BlocCreationListeClasse" class="BlocCreationListeClasse" >
+		 <table class="TableCreation" >
+			 <label id="label_IdTableau">Nouvelle classe</label>
+			   <tr>
+				 <th>Intitulé</th>
+				 <th>Niveau</th>
+			   </tr>
+		 
+		 <tr>
+			 <td><input type="text" name="Intitule"></td>
+			 <td><input type="text" name="Niveau"></td>
+			 <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
+		 </tr>
+		 </table>
+		 <table id="Table_professeurClasse" class="TableCreation" >
+			<label id="label_IdTableau">Liste des professeurs lié à la classe</label>
+			  <tr>
+				<th>M. / Mme.</th>
+				<th>Matière</th>
+				<th>Email</th>
+			  </tr>
+			  <tr>
+				  <td><input type="text" name="NomProf"></td>
+				  <td><input type="text" name="Matiere"></td>
+				  <td><input type="text" name="Email"></td>
+				  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
+			  </tr>	
+			  <tr>
+				<td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableprofesseurClasse()"> + </button></td>
+			  </tr>
+		</table>
 			   
-			    <table class="TableCreation" >
+			    <table id="Table_eleveClasse" class="TableCreation" >
 				  <label id="label_IdTableau">Liste des élèves de la classe</label>
 					<tr>
 					  <th>M. / Mme.</th>
 					  <th>Email</th>
 					</tr>
 					<tr>
-					  <td><input type="text" name="NomElève" value="Pierre André"></td>
-					  <td><input type="text" name="Email" value="pandré@u-psud.fr"></td>
-					</tr>
+						<td><input type="text" name="NomEleve"></td>
+						<td><input type="text" name="Email"></td>
+						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_eleveClasse, this)"/></td>
+					</tr>			
 					<tr>
-					  <td colspan=3><button id="BtnAjouterFourniture" type="button"> + </button></td>
+					  <td colspan=2><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableEleveClasse()"> + </button></td>
 					</tr>
 			  </table>
 		  </div>
 	  
-	  <div class="BlocCreationListeProfesseur">
+	  <div id="BlocCreationListeProfesseur" class="BlocCreationListeProfesseur" style="display:none">
 			  <table id="table_ajoutprofesseur" class="TableCreation" >
 				  <label id="label_IdTableau">Liste des professeurs à ajouter</label>
 					<tr>
@@ -297,11 +347,11 @@
 						<td><input type="text" name="NomProf"></td>
 						<td><input type="text" name="Matière"></td>
 						<td><input type="text" name="EmailProf"></td>
-						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
+						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(table_ajoutprofesseur, this)"/></td>
 					</tr>
 				  
 					<tr>
-					  <td colspan=3><button id="BtnAjouterProfesseur" type="button" onclick="addNewRow()"> + </button></td>
+					  <td colspan=3><button id="BtnAjouterProfesseur" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableajoutprofesseur()"> + </button></td>
 					</tr>
 			  </table>
 		  </div>

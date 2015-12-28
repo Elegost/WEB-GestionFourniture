@@ -9,10 +9,21 @@
    <link href="Style.css" type="text/css" rel="stylesheet" />
    
     <script>
-        function handleClickTable(e) {
-            alert(e.target.innerText); //current cell
-			alert(e.target.parentNode.innerText); //Current row
+        function handleClickTable()
+		{
+			var div = document.getElementById("BlocAffichageListeProf");
+			div.style.display = "none";
+			div = document.getElementById("BlocAffichageListeFournitures");
+			div.style.display = "inline";
 			
+        }
+		
+		function handleClickBtnRetour()
+		{
+			var div = document.getElementById("BlocAffichageListeProf");
+			div.style.display = "inline";
+            div = document.getElementById("BlocAffichageListeFournitures");
+			div.style.display = "none";
         }
     </script>
    
@@ -36,10 +47,11 @@
 	  
 	  <div class="BlocAffichageListe">
 		
-		 <button id="ButtonRetourListeProf" type="button">Retour</button><br/>
+		 <button id="ButtonRetourListeProf" type="button" onclick="handleClickBtnRetour()">Retour</button><br/>
   
-		 <div class="BlocAffichageListeProf">
-			  <table class="TableAffichage" onclick="handleClickTable(event)" >
+		 <div id="BlocAffichageListeProf" class="BlocAffichageListeProf">
+			   <label id="label_IdTableau" >Liste des fournitures demandé par le professeur</label>
+			  <table id="tableProfesseur" class="TableAffichage" onclick="handleClickTable()" >
 					<tr>
 					  <th>M. / Mme.</th>
 					  <th>Matière</th> 
@@ -79,8 +91,8 @@
 					 ?>
 			  </table>
 		  </div>
-		  <div class="BlocAffichageListeFournitures">
-			  <table class="TableAffichageFournitures">
+		  <div id="BlocAffichageListeFournitures" class="BlocAffichageListeFournitures" style="display: none">
+			  <table id="tableFourniture" class="TableAffichageFournitures">
 				  <label id="label_IdTableau" >Liste des fournitures demandé par le professeur</label>
 				  <tr>
 					  <th>Intitulé</th>

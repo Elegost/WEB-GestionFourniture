@@ -162,7 +162,7 @@
 					  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
 					</tr>
 					<tr>
-					  <td colspan=3><button id="BtnAjouterFourniture" type="button" onclick="addNewRow()"> + </button></td>
+					  <td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow()"> + </button></td>
 					</tr>
 			  </table>
 		  </div>

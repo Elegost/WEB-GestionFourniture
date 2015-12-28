@@ -161,7 +161,7 @@ input[id="ButtonSeDeconnecter"]
     margin: 10px; 
 }
 
-#BtnAjouterProfesseur
+.BtnAddNewRowTable
 {
     width: 90%;
 }
