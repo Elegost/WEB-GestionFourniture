@@ -40,7 +40,7 @@
 		 {
 			 die("Connection failed: " . $conn->connect_error);
 		 } 						
-		 $sql = "SELECT DISTINCT Classe.Intitule, Professeur.Matiere, (SELECT SUM(QUANTITE) FROM FOURNITURE WHERE IDClasse=0) as Quantite FROM Classe, Professeur, Fourniture WHERE Fourniture.IDCLasse=0 AND professeur.IDClasse=0";
+		 $sql = "SELECT INTITULE, MATIERE, (SELECT SUM(QUANTITE) FROM FOURNITURE WHERE IDCLASSE=0) as QUANTITE FROM Classe, Professeur WHERE Professeur.Mail = 'hrodiot@u-psud.fr'";
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)
 		 {
@@ -48,9 +48,9 @@
 			 while($row = $result->fetch_assoc())
 			 {
 			   echo "<tr>";
-			   echo "<td>" .$row["Intitule"]. "</td>";
-			   echo "<td>" .$row["Matiere"]. "</td>";
-			   echo "<td>" .$row["Quantite"]. "</td>";
+			   echo "<td>" .$row["INTITULE"]. "</td>";
+			   echo "<td>" .$row["MATIERE"]. "</td>";
+			   echo "<td>" .$row["QUANTITE"]. "</td>";
 			   echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
 			   echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer"/></td>';
 			   echo "</tr>";

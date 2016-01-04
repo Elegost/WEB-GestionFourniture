@@ -69,7 +69,7 @@
 						{
 							die("Connection failed: " . $conn->connect_error);
 						} 						
-						$sql = "SELECT Nom, Matiere, SUM(Quantite) as Quantite FROM Professeur, Fourniture WHERE Fourniture.IDCLasse=0 AND professeur.IDClasse=0";
+						$sql = "SELECT Nom, Matiere, SUM(Quantite) as Quantite FROM Professeur, Fourniture WHERE Fourniture.IDClasse = 0 AND Professeur.IDClasse = 0";
 						$result = $conn->query($sql);						
 						if ($result->num_rows > 0)
 						{
@@ -111,7 +111,7 @@
 						{
 							die("Connection failed: " . $conn->connect_error);
 						} 						
-						$sql = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDCLasse=0 ";
+						$sql = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDClasse = 0 ";
 						$result = $conn->query($sql);						
 						if ($result->num_rows > 0)
 						{

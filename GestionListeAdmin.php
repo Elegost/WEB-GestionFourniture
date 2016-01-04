@@ -7,8 +7,9 @@
    <meta name="author" content="Marcellus Wallace" />
    <link href="Style-Admin.css" type="text/css" rel="stylesheet" />
    
-   <script>
-	  
+   <script src="Cookie.js"/>
+   
+   <script>	  
 		 function addNewRow_tableajoutprofesseur()
 		 {
 			var table = document.getElementById("table_ajoutprofesseur");
@@ -91,9 +92,7 @@
 		 function createCSV()
 		 {
 			window.location.assign('CreateCSV.php');
-		 }
-		 
-		 
+		 }	 
    </script>		 
 </head>
 
@@ -114,15 +113,15 @@
 		 <button id="BtnAfficherListeProfesseurs" type="button" onclick="handleButtonClick_AfficherProfesseur()" > Liste des professeurs </button>
 		 <a href="GraphiqueAdmin.php"><button id="BtnGraphique" type="button">Graphique</button></a>
 		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
-		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>
-		 
+		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>		 
 	  </div>
 	  
 	  <div id="BlocListeClasse" class="BlocListeClasse" >
 		 <button id="BtnSupprimerClasse" type="button" > Supprimer classe(s) </button></br>
-		 
-		 <select id="DDL_Niveau" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
-		   <option>Tous les Niveaux</option>      
+		 <form id="FiltreListeClasse" name="FiltreListeClasse" method="post" action="">
+ 		 <select id="DDL_Niveau" name="DDL_Niveau" onChange="store_DDL_Niveau()" >
+
+		   <option>Tous les niveaux</option>      
 		   <?php
 			   $servername = "localhost";
 			   $username = "AllUser";
@@ -146,7 +145,10 @@
 			   }
 			   $conn->close();
 			?>
-		 </select>
+		 </select></br>
+		 <input type="submit" name="submit" id="submit" value="Rechercher"/>
+		 <input type="button" name="BtnResetFilter" id="BtnResetFilter" value="Remise à zéro" onclick="resetFilter()"/>
+		 </form>
 		 
 		 <p class="cbClasse">
 			 <?php
@@ -161,11 +163,10 @@
 			{
 				die("Connection failed: " . $conn->connect_error);
 			}
-			$sql = "SELECT Intitule FROM Classe WHERE 1";
-			if ($DDL_Matière != '')
-			   $sql .= " AND Matiere='$DDL_Matière'";
-			if ($DDL_Classe != '')
-			   $sql .= " AND Classe='$DDL_Classe'";
+			$sql = "SELECT INTITULE FROM Classe WHERE 1";
+			$DDL_Niveau = $_POST['DDL_Niveau'];
+			if ($DDL_Niveau != 'Tous les niveaux')
+			   $sql .= " AND NIVEAU='$DDL_Niveau'";
 			$result = $conn->query($sql);						
 			if ($result->num_rows > 0)
 			{			
@@ -173,7 +174,7 @@
 				{
 				  echo "<label>";
 				  echo '<input type="checkbox" value="1">';
-				  echo $row["Intitule"];
+				  echo $row["INTITULE"];
 				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
 				  echo "</label>";
 				}
@@ -356,6 +357,32 @@
 			  </table>
 		  </div>
    </div>
+   <script>
+		 function store_DDL_Niveau()  
+		 {
+		   setCookie("DDL_Niveau_index", DDL_Niveau.selectedIndex);
+		   return true;
+		 }
+		 
+		 function store_DDL_Classe()
+		 {
+            setCookie("DDL_Classe_index", DDL_Classe.selectedIndex);
+			return true;
+         }
+		 
+		 function resetFilter()
+		 {
+			deleteCookie("DDL_Niveau_index");
+			deleteCookie("DDL_Classe_index");
+			
+		 }
+	  
+		 var DDL_Niveau = document.getElementById("DDL_Niveau");
+		 if(field1 = getCookie("DDL_Niveau_index")) DDL_Niveau.selectedIndex = field1;
+		 
+		 var DDL_Classe = document.getElementById("DDL_Classe");
+		 if (field2 = getCookie("DDL_Classe_index")) DDL_Classe.selectedIndex = field2;
+	 </script>
 </body>
 
 </html>
