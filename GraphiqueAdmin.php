@@ -1,4 +1,4 @@
-<html>
+ <html>
 
 <head>
    <title>Graphique admin</title>
@@ -12,14 +12,14 @@
 <body>
    <div class="BlocHeader">
 		 <img id="logo" src="Image/logo.jpg" >
-		 <form action="Acceuil.html" method="post">
+		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
 		<label id="IdUser" for="IdUser">Bonjour [MAIL] </label>
 	</div>
    
    <div class="BlocAffGraphique">
-   <a href="GestionListeAdmin.html"><button id="BtnRetour" type="button">Retour</button></a>
+   <a href="GestionListeAdmin.php"><button id="BtnRetour" type="button">Retour</button></a>
 
     <table class="graph" cellspacing="6" cellpadding="0">
       <thead>

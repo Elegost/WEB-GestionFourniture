@@ -33,7 +33,6 @@ table
 
 table, th, td {
     border: 1px solid black;
-    border-radius:9px;
     border-collapse: collapse;
     text-align:center;
 }
@@ -46,9 +45,11 @@ th{
 	background:gray;
 }
 
-td{
-	background:white;
+table tr:nth-child(2n+2)
+{
+    background-color: #CCCCCC;
 }
+
 
 a{
     text-decoration: none;
@@ -221,4 +222,3 @@ input[id="ButtonSeDeconnecter"]
 	display:inline-block;
     vertical-align: top;
 }
-

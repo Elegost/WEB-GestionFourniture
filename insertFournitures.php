@@ -11,7 +11,7 @@
         die("Connection failed: " . $conn->connect_error);
     }
     $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
-            Values ('Pied', 'Pied gauche de martin lavoisier', 2, 0, 0)";
+            Values ('Crayon', 'Crayon HB', 2, 0, 0)";
     $conn->query($sql);
     $conn->close();
 ?>

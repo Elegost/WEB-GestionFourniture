@@ -13,7 +13,7 @@
 <body>
    <div class="BlocHeader">
 		 <img id="logo" src="Image/logo.jpg" >
-		 <form action="Acceuil.html" method="post">
+		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
 		<label id="IdUser" for="IdUser">Bonjour [MAIL] </label>
@@ -29,6 +29,7 @@
 		 <th>Nombre de fournitures</th>
 	   </tr>
 	  <?php
+		 $i=0;
 		 $servername = "localhost";
 		 $username = "AllUser";
 		 $password = "";
@@ -44,7 +45,6 @@
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)
 		 {
-			
 			 while($row = $result->fetch_assoc())
 			 {
 			   echo "<tr>";
