@@ -31,7 +31,7 @@
 
 <body>
 	  <?php
-		 $sqlConn = mysql_connect("localhost","AllUser","");
+		 $sqlConn = mysqli_connect("localhost","AllUser","");
 		 if (!$sqlConn)
 		 {
 			 die("Database connection failed : " . mysql_error());
