@@ -19,12 +19,6 @@
 		
 			<INPUT  id="btnSeConnecter" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter">
 		</FORM>
-		<FORM METHOD="LINK" ACTION="AffichageListe(Prof).php">
-			<INPUT  id="btnSeConnecter(PROF)" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter (PROF)">
-		</FORM>
-		<FORM METHOD="LINK" ACTION="GestionListeAdmin.php">
-			<INPUT  id="btnSeConnecter(ADMIN)" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter (ADMIN)">
-		</FORM>
     </div>
 </body>
 
