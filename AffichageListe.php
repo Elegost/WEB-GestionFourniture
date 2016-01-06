@@ -59,7 +59,7 @@
 					</tr>
 					 <?php
 						$servername = "localhost";
-						$username = "AllUser";
+						$username = "root";
 						$password = "";
 						$dbname = "GestionFourniture";						
 						// Create connection

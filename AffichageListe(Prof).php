@@ -31,7 +31,7 @@
 	  <?php
 		 $i=0;
 		 $servername = "localhost";
-		 $username = "AllUser";
+		 $username = "root";
 		 $password = "";
 		 $dbname = "GestionFourniture";						
 		 // Create connection
