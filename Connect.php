@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if(!isset($_GET['login']) && !isset($_GET['Password']))
 {
 	header('location : index.php');
@@ -19,7 +19,7 @@ else
 	$servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "site_web";						
+    $dbname = "GestionFourniture";						
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
@@ -50,14 +50,21 @@ else
 		$resultallow=mysqli_fetch_array($requete3);
 		if($conn->real_escape_string($resultallow[0]==2))
 		{
+			
+			$login=$_GET['login'];
+			$_SESSION['Email']=$login;
 			header('Location: GestionListeAdmin.php');
 		}
 		elseif(($conn->real_escape_string($resultallow[0]==1)))
 		{
+			$login=$_GET['login'];
+			$_SESSION['Email']=$login;
 			header('Location: AffichageListe(Prof).php');
 		}
 		elseif(($conn->real_escape_string($resultallow[0]==0)))
 		{
+			$login=$_GET['login'];
+			$_SESSION['Email']=$login;
 			header('Location:  AffichageListe.php');
 		}
 		

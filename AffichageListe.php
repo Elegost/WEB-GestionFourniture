@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <html>
 
 <head>
@@ -42,7 +45,7 @@
 		   <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		   </form>
-		  <label id="IdUser" for="IdUser">Bonjour [MAIL] </label>
+		  <label id="IdUser" for="IdUser">Bonjour <?php echo $_SESSION['Email'];?> </label>
 	  </div>
 	  
 	  <div class="BlocAffichageListe">
@@ -106,6 +109,8 @@
 						$dbname = "GestionFourniture";						
 						// Create connection
 						$conn = new mysqli($servername, $username, $password, $dbname);
+						$email=$_SESSION['email'];
+						$email=$conn->real_escape_string($email);
 						// Check connection
 						if ($conn->connect_error)
 						{

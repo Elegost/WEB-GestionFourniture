@@ -1,3 +1,6 @@
+ <?php
+ session_start();
+ ?>
  <html>
 
 <head>
@@ -15,7 +18,7 @@
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
-		<label id="IdUser" for="IdUser">Bonjour [MAIL] </label>
+		<label id="IdUser" for="IdUser"> Voici la page du Graphique Mr : <?php echo $_SESSION['Email'];?> </label>
 	</div>
 <?php
     $servername = "localhost";
