@@ -21,8 +21,8 @@
 	  <div class="BlocListeClasseProfesseur">
 		 
 	  <div class="BlocSelectionListeClasseProfesseur">
-		 <button id="BtnAfficherListeClasse" type="button" > Liste des classes </button>
-		 <button id="BtnAfficherListeProfesseurs" type="button" > Liste des professeurs </button>
+		 <button id="BtnAfficherListeClasse" type="button" onclick="handleButtonClick_AfficherClasse()"> Liste des classes </button>
+		 <button id="BtnAfficherListeProfesseurs" type="button" onclick="handleButtonClick_AfficherProfesseur()"> Liste des professeurs </button>
 		 <a href="GraphiqueAdmin.php"><button id="BtnGraphique" type="button">Graphique</button></a>
 		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
 		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>		 
@@ -243,7 +243,7 @@
 						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_eleveClasse, this)"/></td>
 					</tr>			
 					<tr>
-					  <td colspan=2><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button"> + </button></td>
+					  <td colspan=2><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableEleveClasse()"> + </button></td>
 					</tr>
 			  </table>
 		  </div>
@@ -264,20 +264,12 @@
 					</tr>
 				  
 					<tr>
-					  <td colspan=3><button id="BtnAjouterProfesseur" class="BtnAddNewRowTable" type="button"> + </button></td>
+					  <td colspan=3><button id="BtnAjouterProfesseur" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableajoutprofesseur()"> + </button></td>
 					</tr>
 			  </table>
 		  </div>
    </div>
-   <script src="Cookie.js"/>
-   <script type="text/javascript">
-	  	 document.getElementById("BtnAfficherListeClasse").addEventListener("click", handleButtonClick_AfficherClasse);
-		 document.getElementById("BtnAfficherListeProfesseurs").addEventListener("click", handleButtonClick_AfficherProfesseur);
-		 
-		 document.getElementById("BtnAjouterFourniture").addEventListener("click", addNewRow_tableEleveClasse);
-		 document.getElementById("BtnAjouterProfesseur").addEventListener("click", addNewRow_tableajoutprofesseur);
-
-	  
+   <script type="text/javascript">  
 		 function addNewRow_tableajoutprofesseur()
 		 {
 			var table = document.getElementById("table_ajoutprofesseur");
@@ -362,7 +354,7 @@
 			window.location.assign('CreateCSV.php');
 		 }	 
 		 
-		 function store_DDL_Niveau()  
+		 /*function store_DDL_Niveau()  
 		 {
 		   setCookie("DDL_Niveau_index", DDL_Niveau.selectedIndex);
 		   return true;
@@ -380,12 +372,13 @@
 			deleteCookie("DDL_Classe_index");
 			
 		 }
-	  
+					 
 		 var DDL_Niveau = document.getElementById("DDL_Niveau");
 		 if(field1 = getCookie("DDL_Niveau_index")) DDL_Niveau.selectedIndex = field1;
 		 
 		 var DDL_Classe = document.getElementById("DDL_Classe");
-		 if (field2 = getCookie("DDL_Classe_index")) DDL_Classe.selectedIndex = field2;
+		 if (field2 = getCookie("DDL_Classe_index")) DDL_Classe.selectedIndex = field2;*/
+	  		 
 	 </script>
 </body>
 
