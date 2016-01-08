@@ -1,6 +1,10 @@
+<?php
+	  session_start();
+?>
 <html>
 
 <head>
+	<meta charset="utf-8" />
    <title>AffichageListe(Prof)</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta name="description" content="Squelette" />
@@ -16,7 +20,7 @@
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
-		<label id="IdUser" for="IdUser">Bonjour [MAIL] </label>
+		<label id="IdUser" for="IdUser">Bonjour <?php echo $_SESSION['Email'];?> </label>
 	</div>
 	
    	<div class="BlocAffichageListe">
@@ -31,7 +35,7 @@
 	  <?php
 		 $i=0;
 		 $servername = "localhost";
-		 $username = "AllUser";
+		 $username = "root";
 		 $password = "";
 		 $dbname = "GestionFourniture";						
 		 // Create connection
@@ -52,7 +56,7 @@
 			   echo "<td>" .$row["MATIERE"]. "</td>";
 			   echo "<td>" .$row["QUANTITE"]. "</td>";
 			   echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
-			   echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer"/></td>';
+			   echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
 			   echo "</tr>";
 			 }
 		 }
