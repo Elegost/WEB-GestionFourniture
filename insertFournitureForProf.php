@@ -11,7 +11,11 @@
         die("Connection failed: " . $conn->connect_error);
     }
     $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
-            Values ('Crayon', 'Crayon HB', 2, 0, 0)";
-    $conn->query($sql);
+            Values ('$_POST[Intitule]', '$_POST[Description]', $_POST[Quantite], 0, 0)";
+    if(!mysqli_query($conn, $sql))
+    {
+        echo("Description erreur : " . mysqli_error($conn));
+        echo($sql);
+    }
     $conn->close();
 ?>

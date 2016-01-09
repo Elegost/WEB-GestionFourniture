@@ -120,9 +120,9 @@
 	  ?>
 	  </p>
 	  
-	  <form action="insertFournitures.php" method="post" >
+	  <form action="insertFournitureForProf.php" method="post" >
 	  <input id="BtnValiderListeFourniture" class="BtnValider" type="submit" value="Valider">
-	  </form>
+	  
 	  <a href="AffichageListe(Prof).php"><button id="BtnAnnulerListeFourniture" type="button" class="BtnRetour"> Annuler </button></a>
   
 	  </div>
@@ -136,8 +136,8 @@
 					  <th>Description</th>
 					</tr>
 					<tr>
-					  <td><input type="text" name="Intitulé" ></td>
-					  <td><input type="text" name="Nombre"></td> 
+					  <td><input type="text" name="Intitule" ></td>
+					  <td><input type="text" name="Quantite"></td> 
 					  <td><input type="text" name="Description"></td>
 					  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
 					</tr>
@@ -146,6 +146,7 @@
 					</tr>
 			  </table>
 		  </div>
+	  </form>
    </div>
 
    <script src="Cookie.js"></script>
@@ -162,7 +163,7 @@
 		  var cell3 = row.insertCell(2);
 		  var cell4 = row.insertCell(3);
 		  cell1.innerHTML = '<input type="text" name="Intitulé">';
-		  cell2.innerHTML = '<input type="text" name="Nombre">';
+		  cell2.innerHTML = '<input type="text" name="Quantite">';
 		  cell3.innerHTML = '<input type="text" name="Description">';
 		  cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
 	  }
