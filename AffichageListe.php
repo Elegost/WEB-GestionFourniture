@@ -143,8 +143,7 @@ session_start();
 					 ?>
 			  </table>
 		  </div>
-		  		 <button id="BtnImpressionListeFourniturePDF" type="button" onclick="createPDF()">Imprimer PDF</button>		 
-
+			<button id="BtnImpressionListeFourniturePDF" type="button" onclick="createPDF()">Imprimer PDF</button>
 	 </div>
    </body>
 

@@ -43,7 +43,13 @@ $pdf->Cell(80, 6, 'Description', 1, 0, 'R', 1);
 $y_axis = $y_axis + $row_height;
 
 //Select the Products you want to show in your PDF file
-$sqlquery = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDCLASSE=0";
+$mail = $_SESSION['Email'];
+if($mail == "")
+{
+    $mail="blangot@u-psud.fr";
+}
+$sqlquery = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDClasse = (SELECT IDClasse from Eleve WHERE Mail='$mail' )";
+//echo($sqlquery);
 $result = $conn->query($sqlquery);
 
 
@@ -95,5 +101,5 @@ while($row = $result->fetch_assoc() )
 $conn->close();
 
 //Create file
-$pdf->Output();
+$pdf->Output('ListeDesFourniture.pdf','I');
 ?>
