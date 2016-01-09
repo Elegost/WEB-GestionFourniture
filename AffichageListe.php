@@ -62,7 +62,7 @@ session_start();
 					</tr>
 					 <?php
 						$servername = "localhost";
-						$username = "root";
+						$username = "allUser";
 						$password = "";
 						$dbname = "GestionFourniture";						
 						// Create connection

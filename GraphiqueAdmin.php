@@ -22,7 +22,7 @@
 	</div>
 <?php
     $servername = "localhost";
-    $username = "root";
+    $username = "allUser";
     $password = "";
     $dbname = "GestionFourniture";						
     // Create connection

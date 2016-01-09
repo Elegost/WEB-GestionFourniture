@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <html>
 <head>
    <title>Gestion de Liste (ADMIN)</title>
@@ -17,7 +14,7 @@ session_start();
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
-		<label id="IdUser" for="IdUser">Bonjour <?php echo $_SESSION['Email'];?></label>
+		<label id="IdUser" for="IdUser">Bonjour [MAIL]</label>
 	</div>
 
    <div class="BlocGestionListe">
