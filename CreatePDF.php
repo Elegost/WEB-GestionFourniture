@@ -1,95 +1,99 @@
 <?php
-ini_set('display_errors',1);
 
 require('fpdf.php');
 
-class PDF extends FPDF
+//Connect to your database
+$servername = "localhost";
+$username = "AllUser";
+$password = "";
+$dbname = "GestionFourniture";						
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error)
 {
-    //Load data
-    function LoadData($file)
-    {
-        //Read file lines
-        $lines=file($file);
-        $data=array();
-        foreach($lines as $line)
-            $data[]=explode(';',chop($line));
-        return $data;
-    }
-    
-    //Simple table
-    function BasicTable($header,$data)
-    {
-        //Header
-        foreach($header as $col)
-            $this->Cell(60,7,$col,1);
-        $this->Ln();
-        //Data
-        foreach($data as $row)
-        {
-            foreach($row as $col)
-            {
-                $this->Cell(60,6,$col,1);
-            }
-            $this->Ln();
-        }
-    }
+    die("Connection failed: " . $conn->connect_error);
 }
-    
-    $pdf=new PDF();
-    
-    //Data loading
-    $data=$pdf->LoadData('test.txt');
-    //set font for the entire document
-    $pdf->SetFont('TIMES','B',20);
-    
-    $pdf->SetAuthor('Langot Benjamin & Jean francois galietti');
-    $pdf->SetTitle('Liste des eleves pdf');
-    
-    $pdf->AddPage();
-    //display the title with a border around it
-    $pdf->SetXY(50,20);
-    $pdf->Cell(100,10,'Liste des Fournitures',1,0,'C',0);
-    $pdf->Ln();
-    $pdf->Ln();
 
-    //Column titles
-    $header=array('Nom', 'Classe');
-    
-    $pdf->BasicTable($header,$data);
-    $pdf->Output();
-?>
-
-/*
-//create a FPDF object
+//Create new pdf file
 $pdf=new FPDF();
 
-//set document properties
-$pdf->SetAuthor('Langot Benjamin & Jean francois galietti');
-$pdf->SetTitle('Liste des eleves pdf');
+//Open file
+//$pdf->Open();
 
-//set font for the entire document
-$pdf->SetFont('TIMES','B',20);
+//Disable automatic page break
+$pdf->SetAutoPageBreak(false);
 
-//set up a page
-$pdf->AddPage('P'); 
+//Add first page
+$pdf->AddPage();
 
-//display the title with a border around it
-$pdf->SetXY(50,20);
-$pdf->SetDrawColor(50,60,100);
-$pdf->Cell(100,10,'Liste des eleves',1,0,'C',0);
+//set initial y axis position per page
+$y_axis_initial = 25;
+$y_axis=31;
 
-//Set x and y position for the main text, reduce font size and write content
-$pdf->SetXY (10,50);
-$pdf->SetFontSize(10);
+//print column titles for the actual page
+$pdf->SetFillColor(232, 232, 232);
+$pdf->SetFont('TIMES', 'B', 12);
+$pdf->SetY($y_axis_initial);
+$pdf->SetX(25);
+$pdf->Cell(50, 6, 'Intitule', 1, 0, 'L', 1);
+$pdf->Cell(30, 6, 'Quantite', 1, 0, 'C', 1);
+$pdf->Cell(80, 6, 'Description', 1, 0, 'R', 1);
+
+$y_axis = $y_axis + $row_height;
+
+//Select the Products you want to show in your PDF file
+$sqlquery = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDCLASSE=0";
+$result = $conn->query($sqlquery);
 
 
-$pdf->Cell(50,10,'Thierry henriette',1,0,'C',0);
-$pdf->Cell(50,10,'Terminal A',1,0,'C',0);
+//initialize counter
+$i = 0;
 
-$pdf->Cell(50,10,'Jeannine Ninja',1,0,'C',0);
-$pdf->Cell(50,10,'Pierre Rolefou',1,0,'C',0);
+//Set maximum rows per page
+$max = 25;
 
-//Output the document
-$pdf->Output('example1.pdf','I'); 
+//Set Row Height
+$row_height = 6;
 
-?>*/
+while($row = $result->fetch_assoc() )
+{
+    //If the current row is the last one, create new page and print column title
+    if ($i == $max)
+    {
+        $pdf->AddPage();
+
+        //print column titles for the current page
+        $pdf->SetY($y_axis_initial);
+        $pdf->SetX(25);
+        $pdf->Cell(50, 6, 'Intitule', 1, 0, 'L', 1);
+        $pdf->Cell(30, 6, 'Quantite', 1, 0, 'C', 1);
+        $pdf->Cell(80, 6, 'Description', 1, 0, 'R', 1);
+
+        //Go to next row
+        $y_axis = $y_axis + $row_height;
+
+        //Set $i variable to 0 (first row)
+        $i = 0;
+    }
+
+    $intitule = $row['Intitule'];
+    $quantite = $row['Quantite'];
+    $description = $row['Description'];
+
+    $pdf->SetY($y_axis);
+    $pdf->SetX(25);
+    $pdf->Cell(50, 6, $intitule, 1, 0, 'L', 1);
+    $pdf->Cell(30, 6, $quantite, 1, 0, 'C', 1);
+    $pdf->Cell(80, 6, $description, 1, 0, 'R', 1);
+
+    //Go to next row
+    $y_axis = $y_axis + $row_height;
+    $i = $i + 1;
+}
+
+$conn->close();
+
+//Create file
+$pdf->Output();
+?>

@@ -84,6 +84,15 @@ a{
 	margin:5px;
 }
 
+#BtnImpressionListeFourniturePDF
+{
+    border-radius:12px;
+    margin:auto;
+    display:block;
+	padding:5px 5px;
+	margin:5px;
+}
+
 #ButtonAjouterListe
 {
     border-radius:12px;

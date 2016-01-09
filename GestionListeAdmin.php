@@ -25,7 +25,6 @@
 		 <button id="BtnAfficherListeProfesseurs" type="button" onclick="handleButtonClick_AfficherProfesseur()"> Liste des professeurs </button>
 		 <a href="GraphiqueAdmin.php"><button id="BtnGraphique" type="button">Graphique</button></a>
 		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
-		 <button id="BtnImpressionListeElèvesPDF" type="button" onclick="createPDF()">Imprimer un fichier PDF</button>		 
 	  </div>
 	  
 	  <div id="BlocListeClasse" class="BlocListeClasse" >
@@ -343,11 +342,6 @@
 			div = document.getElementById("BlocCreationListeProfesseur");
 			div.style.display = "inline";	
          }
-		 
-		 function createPDF()
-		 {
-			window.location.assign('CreatePDF.php');
-		 }
 		 
 		 function createCSV()
 		 {

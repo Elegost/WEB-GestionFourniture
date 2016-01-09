@@ -120,7 +120,7 @@
 	  ?>
 	  </p>
 	  
-	  <form action="insertFournitureForProf.php" method="post" >
+	  <form id="insertFournitureForProf" action="insertFournitureForProf.php" method="post" >
 	  <input id="BtnValiderListeFourniture" class="BtnValider" type="submit" value="Valider">
 	  
 	  <a href="AffichageListe(Prof).php"><button id="BtnAnnulerListeFourniture" type="button" class="BtnRetour"> Annuler </button></a>
@@ -197,7 +197,6 @@
 		 deleteCookie("DDL_Classe_index");
 		 
 	  }
-	  
    
 	  var DDL_Matiere = document.getElementById("DDL_Matière");
 	  if(field1 = getCookie("DDL_Matiere_index")) DDL_Matiere.selectedIndex = field1;

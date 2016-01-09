@@ -28,6 +28,11 @@ session_start();
             div = document.getElementById("BlocAffichageListeFournitures");
 			div.style.display = "none";
         }
+		
+		function createPDF()
+		 {
+			window.location.assign('CreatePDF.php');
+		 }
     </script>
    
 </head>
@@ -138,6 +143,8 @@ session_start();
 					 ?>
 			  </table>
 		  </div>
+		  		 <button id="BtnImpressionListeFourniturePDF" type="button" onclick="createPDF()">Imprimer PDF</button>		 
+
 	 </div>
    </body>
 
