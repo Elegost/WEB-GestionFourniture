@@ -1,0 +1,111 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de données :  `GestionFourniture`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `classe`
+--
+
+CREATE TABLE `classe` (
+  `IDClasse` int(30) NOT NULL,
+  `Niveau` varchar(50) NOT NULL,
+  `Intitule` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `connection`
+--
+
+CREATE TABLE `connection` (
+  `Email` varchar(320) NOT NULL,
+  `Password` varchar(60) NOT NULL,
+  `Droit` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `eleve`
+--
+
+CREATE TABLE `eleve` (
+  `IDEleve` int(30) NOT NULL,
+  `Nom` varchar(250) DEFAULT NULL,
+  `Mail` varchar(320) NOT NULL,
+  `IDClasse` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fourniture`
+--
+
+CREATE TABLE `fourniture` (
+  `IDFourniture` int(11) NOT NULL,
+  `IDClasse` int(11) NOT NULL,
+  `IDProfesseur` int(11) NOT NULL,
+  `Intitule` varchar(250) NOT NULL,
+  `Quantite` int(11) NOT NULL,
+  `Description` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `professeur`
+--
+
+CREATE TABLE `professeur` (
+  `IDProfesseur` int(30) NOT NULL,
+  `Nom` varchar(250) NOT NULL,
+  `Matiere` varchar(30) NOT NULL,
+  `Mail` varchar(320) NOT NULL,
+  `IDClasse` int(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `classe`
+--
+ALTER TABLE `classe`
+  ADD PRIMARY KEY (`IDClasse`);
+
+--
+-- Index pour la table `eleve`
+--
+ALTER TABLE `eleve`
+  ADD PRIMARY KEY (`IDEleve`,`Mail`),
+  ADD KEY `IDEleve` (`IDEleve`);
+
+--
+-- Index pour la table `fourniture`
+--
+ALTER TABLE `fourniture`
+  ADD PRIMARY KEY (`IDFourniture`);
+
+--
+-- Index pour la table `professeur`
+--
+ALTER TABLE `professeur`
+  ADD PRIMARY KEY (`IDProfesseur`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `fourniture`
+--
+ALTER TABLE `fourniture`
+  MODIFY `IDFourniture` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
