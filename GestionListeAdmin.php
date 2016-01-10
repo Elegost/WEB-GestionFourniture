@@ -1,4 +1,7 @@
 <html>
+<?php
+   session_start();
+?>
 <head>
    <title>Gestion de Liste (ADMIN)</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -74,7 +77,7 @@
 			{
 				die("Connection failed: " . $conn->connect_error);
 			}
-			$sql = "SELECT INTITULE FROM Classe WHERE 1";
+			$sql = "SELECT INTITULE, IDCLASSE FROM Classe WHERE 1";
 			$DDL_Niveau = $_POST['DDL_Niveau'];
 			if ($DDL_Niveau != 'Tous les niveaux')
 			   $sql .= " AND NIVEAU='$DDL_Niveau'";
@@ -84,7 +87,7 @@
 				while($row = $result->fetch_assoc())
 				{
 				  echo "<label>";
-				  echo '<input type="checkbox" value="1">';
+				  echo '<input type="checkbox" value="' . $row["IDClasse"] . ' ">';
 				  echo $row["INTITULE"];
 				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
 				  echo "</label>";
@@ -116,7 +119,7 @@
 			   {
 				   die("Connection failed: " . $conn->connect_error);
 			   } 						
-			   $sql = "SELECT Matiere FROM Professeur WHERE 1";
+			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE 1";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
 			   {			
@@ -129,33 +132,7 @@
 			?>
 		 </select>
 		 
-		 <select id="DDL_Classe" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
-		   <option>Toutes les Classes</option>
-		<?php
-			   $servername = "localhost";
-			   $username = "AllUser";
-			   $password = "";
-			   $dbname = "GestionFourniture";						
-			   // Create connection
-			   $conn = new mysqli($servername, $username, $password, $dbname);
-			   // Check connection
-			   if ($conn->connect_error)
-			   {
-				   die("Connection failed: " . $conn->connect_error);
-			   } 						
-			   $sql = "SELECT Intitule FROM Classe WHERE 1";
-			   $result = $conn->query($sql);						
-			   if ($result->num_rows > 0)
-			   {			
-				   while($row = $result->fetch_assoc())
-				   {
-					 echo "<option>" . $row["Intitule"] . "</option>";
-				   }
-			   }
-			   $conn->close();
-			?>
-		 </select>
-		 
+		 <form action="insertNewProf.php" method="post">
 		 <p class="cbProfesseur">
 		 <?php
 			$servername = "localhost";
@@ -169,7 +146,7 @@
 			{
 				die("Connection failed: " . $conn->connect_error);
 			}
-			$sql = "SELECT Intitule, Matiere FROM Classe, Professeur WHERE Professeur.IDProfesseur = 0";
+			$sql = "SELECT Nom, Matiere FROM Professeur WHERE 1";
 			if ($DDL_Matière != '')
 			   $sql .= " AND Matiere='$DDL_Matière'";
 			if ($DDL_Classe != '')
@@ -180,8 +157,8 @@
 				while($row = $result->fetch_assoc())
 				{
 				  echo "<label>";
-				  echo '<input type="checkbox" value="1">';
-				  echo $row["Intitule"] . "(" . $row["Matiere"] . ")";
+				  echo '<input type="checkbox">';
+				  echo $row["Nom"] . "(" . $row["Matiere"] . ")";
 				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
 				  echo "</label>";
 				}
@@ -195,7 +172,7 @@
 		 </p>
 	  </div>
 	  
-	  <button id="BtnValiderListeFourniture" type="button" class="BtnValider"> Valider </button>
+	  <button id="BtnValiderListeFourniture" type="submit" class="BtnValider"> Valider </button>
 	  </div>
 	  
 	  <div id="BlocCreationListeClasse" class="BlocCreationListeClasse" >
@@ -220,7 +197,7 @@
 				<th>Email</th>
 			  </tr>
 			  <tr>
-				  <td><input type="text" name="NomProf"></td>
+				  <td><input type="text" name="Nom"></td>
 				  <td><input type="text" name="Matiere"></td>
 				  <td><input type="text" name="Email"></td>
 				  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
@@ -257,7 +234,7 @@
 					</tr>
 					<tr>
 						<td><input type="text" name="NomProf"></td>
-						<td><input type="text" name="Matière"></td>
+						<td><input type="text" name="MatiereProf"></td>
 						<td><input type="text" name="EmailProf"></td>
 						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(table_ajoutprofesseur, this)"/></td>
 					</tr>
@@ -267,6 +244,7 @@
 					</tr>
 			  </table>
 		  </div>
+	  </form>
    </div>
    <script type="text/javascript">  
 		 function addNewRow_tableajoutprofesseur()
