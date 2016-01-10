@@ -1,4 +1,7 @@
 <?php
+	  session_start();
+?>
+<?php
     $servername = "localhost";
     $username = "AllUser";
     $password = "";
@@ -10,12 +13,18 @@
     {
         die("Connection failed: " . $conn->connect_error);
     }
-    $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
-            Values ('$_POST[Intitule]', '$_POST[Description]', $_POST[Quantite], 0, (SELECT IDProfesseur FROM Professeur WHERE MAIL='hrodiot@u-psud.fr' AND IDClasse=0))";
-    if(!mysqli_query($conn, $sql))
+    $mail = $_SESSION["Email"];
+    $cbClasse = $_POST["cbclasse"];
+    foreach($cbClasse as $idClasse)
     {
-        echo("Description erreur : " . mysqli_error($conn));
-        echo($sql);
+        $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
+                Values ('$_POST[Intitule]', '$_POST[Description]', $_POST[Quantite], $idClasse, (SELECT IDProfesseur FROM Professeur WHERE MAIL='$mail' AND IDClasse=$idClasse))";
+        if(!mysqli_query($conn, $sql))
+        {
+            echo("Description erreur : " . mysqli_error($conn));
+            echo($sql);
+            echo "</br>";
+        }
     }
     $conn->close();
 ?>

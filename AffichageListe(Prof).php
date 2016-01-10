@@ -25,13 +25,7 @@
 	
    	<div class="BlocAffichageListe">
 	  <a href="GestionListe.php"><button id="ButtonAjouterListe" type="button" class="BtnDivEdition">Ajouter liste</button></a>
-	  <table class="TableAffichage">
-	  <label id="label_IdTableau">Liste des classes pour lesquelles vous avez crée des listes de fournitures</label>
-	   <tr>
-		 <th>Classe</th>
-		 <th>Matière</th> 
-		 <th>Nombre de fournitures</th>
-	   </tr>
+	  
 	  <?php
 		 $i=0;
 		 $servername = "localhost";
@@ -44,20 +38,51 @@
 		 if ($conn->connect_error)
 		 {
 			 die("Connection failed: " . $conn->connect_error);
-		 } 						
-		 $sql = "SELECT INTITULE, MATIERE, (SELECT SUM(QUANTITE) FROM FOURNITURE WHERE IDCLASSE=0) as QUANTITE FROM Classe, Professeur WHERE Professeur.Mail = 'hrodiot@u-psud.fr'";
+		 }
+		 $mail = $_SESSION["Email"];
+		 $sql = "SELECT INTITULE, MATIERE FROM Classe, Professeur WHERE Professeur.Mail = '$mail'";
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)
 		 {
 			 while($row = $result->fetch_assoc())
 			 {
-			   echo "<tr>";
-			   echo "<td>" .$row["INTITULE"]. "</td>";
-			   echo "<td>" .$row["MATIERE"]. "</td>";
-			   echo "<td>" .$row["QUANTITE"]. "</td>";
-			   echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
-			   echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
-			   echo "</tr>";
+				  echo '<table class="TableAffichage">';
+				  echo "<tr>";
+				  echo "<th>Classe</th>";
+				  echo "<th>Matière</th>";
+				  echo "</tr>";
+				  
+				  echo "<tr>";
+				  echo "<td>" .$row["INTITULE"]. "</td>";
+				  echo "<td>" .$row["MATIERE"]. "</td>";
+				  echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
+				  echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
+				  echo "</tr>";
+				  echo "</table>";
+				  
+				  echo '<table class="TableAffichage">';
+				  echo "<tr>";
+				  echo "<th>Intitulé</th>";
+				  echo "<th>Nombre</th>"; 
+				  echo "<th>Description</th>";
+				  echo "</tr>";
+				  
+				  $sql2 = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDProfesseur = (SELECT IDProfesseur FROM Professeur WHERE Mail = '$mail')";
+				  $result2 = $conn->query($sql2);						
+				  if ($result2->num_rows > 0)
+				  {
+					 
+					  while($row2 = $result2->fetch_assoc())
+					  {
+						echo "<tr>";
+						echo "<td>" .$row2["Intitule"]. "</td>";
+						echo "<td>" .$row2["Quantite"]. "</td>";
+						echo "<td>" .$row2["Description"]. "</td>";
+						echo "</tr>";
+						
+					  }
+					  echo "</table>";
+				  }
 			 }
 		 }
 		 else

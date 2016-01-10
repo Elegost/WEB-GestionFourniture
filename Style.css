@@ -171,14 +171,12 @@ input[id="ButtonSeDeconnecter"]
 {
     float: left;
     position:relative;
-    margin-top:100%;   
 }
 
 #BtnAnnulerListeFourniture
 {
     float: right;
     position:relative;
-    margin-top:100%;       
 }
 
 .BlocEdition, .BlocGestionListe

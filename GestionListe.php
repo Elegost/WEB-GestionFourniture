@@ -1,5 +1,7 @@
 <html>
-
+<?php
+	  session_start();
+?>
 <head>
    <title>Gestion de Liste</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -18,7 +20,7 @@
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
-		<label id="IdUser" for="IdUser">Bonjour [MAIL] </label>
+		<label id="IdUser" for="IdUser">Bonjour <?php echo $_SESSION['Email'];?> </label>
 	</div>
 
    <div class="BlocGestionListe">
@@ -37,8 +39,9 @@
 			   if ($conn->connect_error)
 			   {
 				   die("Connection failed: " . $conn->connect_error);
-			   } 						
-			   $sql = "SELECT Matiere FROM Professeur WHERE 1";
+			   }
+			   $mail = $_SESSION["Email"];
+			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE Professeur.Mail = '$mail'";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
 			   {			
@@ -64,8 +67,10 @@
 				  if ($conn->connect_error)
 				  {
 					  die("Connection failed: " . $conn->connect_error);
-				  } 						
-				  $sql = "SELECT Intitule FROM Classe WHERE 1";
+				  }
+				  $mail = $_SESSION["Email"];
+				  $sql = "SELECT DISTINCT Intitule FROM Classe WHERE 1";
+				  echo "$sql";
 				  $result = $conn->query($sql);						
 				  if ($result->num_rows > 0)
 				  {			
@@ -81,6 +86,7 @@
 		 <input type="button" name="BtnResetFilter" id="BtnResetFilter" value="Remise à zéro" onclick="resetFilter()"/>
 	  </form><br/>
   
+	  <form id="insertFournitureForProf" action="insertFournitureForProf.php" method="post" >
 	  <p class="cb">
 	  <?php
 		 $servername = "localhost";
@@ -94,7 +100,8 @@
 		 {
 			 die("Connection failed: " . $conn->connect_error);
 		 }
-		 $sql = "SELECT INTITULE, MATIERE FROM CLASSE, Professeur WHERE Professeur.Mail = 'hrodiot@u-psud.fr'"; //REMPLACER LE MAIL PAR LE MAIL DU PROF
+		 $mail = $_SESSION["Email"];
+		 $sql = "SELECT INTITULE, MATIERE, Classe.IDClasse FROM CLASSE, Professeur WHERE Professeur.IDProfesseur = 0";
 		 $DDL_Matière = $_POST['DDL_Matière'];
 		 $DDL_Classe = $_POST['DDL_Classe'];
 		 if ($DDL_Matière != 'Toutes les Matières')
@@ -107,7 +114,7 @@
 			 while($row = $result->fetch_assoc())
 			 {
 			   echo "<label>";
-			   echo '<input type="checkbox" value="1">';
+			   echo '<input type="checkbox" name="cbclasse[]" value="' . $row["IDClasse"] . '">';
 			   echo $row["INTITULE"] . "(" . $row["MATIERE"] . ")";	
 			   echo "</label>";
 			 }
@@ -120,7 +127,7 @@
 	  ?>
 	  </p>
 	  
-	  <form id="insertFournitureForProf" action="insertFournitureForProf.php" method="post" >
+	  
 	  <input id="BtnValiderListeFourniture" class="BtnValider" type="submit" value="Valider">
 	  
 	  <a href="AffichageListe(Prof).php"><button id="BtnAnnulerListeFourniture" type="button" class="BtnRetour"> Annuler </button></a>
