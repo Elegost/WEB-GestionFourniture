@@ -59,7 +59,7 @@ $result5cent=(($result5[0]*100)/($resultTotal[0]));
 $result6cent=(($result6[0]*100)/($resultTotal[0]));
     $conn->close();
 	echo "<div class='BlocAffGraphique'>";
-   echo "<a href='GestionListeAdmin.html'><button id='BtnRetour' type='button'>Retour</button></a>";
+   echo "<a href='GestionListeAdmin.php'><button id='BtnRetour' type='button'>Retour</button></a>";
 
    echo " <table class='graph' cellspacing='6' cellpadding='0'>";
      echo "<thead>";

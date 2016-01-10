@@ -12,22 +12,6 @@ session_start();
    <link href="Style.css" type="text/css" rel="stylesheet" />
    
     <script>
-        function handleClickTable()
-		{
-			var div = document.getElementById("BlocAffichageListeProf");
-			div.style.display = "none";
-			div = document.getElementById("BlocAffichageListeFournitures");
-			div.style.display = "inline";
-			
-        }
-		
-		function handleClickBtnRetour()
-		{
-			var div = document.getElementById("BlocAffichageListeProf");
-			div.style.display = "inline";
-            div = document.getElementById("BlocAffichageListeFournitures");
-			div.style.display = "none";
-        }
 		
 		function createPDF()
 		 {
@@ -53,95 +37,77 @@ session_start();
 		  <label id="IdUser" for="IdUser">Bonjour <?php echo $_SESSION['Email'];?> </label>
 	  </div>
 	  
-	  <div class="BlocAffichageListe">
-		
-		 <button id="ButtonRetourListeProf" type="button" onclick="handleClickBtnRetour()">Retour</button><br/>
-  
+	  <div class="BlocAffichageListe">  
 		 <div id="BlocAffichageListeProf" class="BlocAffichageListeProf">
-			   <label id="label_IdTableau" >Liste des fournitures demandé par le professeur</label>
-			  <table id="tableProfesseur" class="TableAffichage" onclick="handleClickTable()" >
-					<tr>
-					  <th>M. / Mme.</th>
-					  <th>Matière</th> 
-					  <th>Nombre de fournitures</th>
-					</tr>
-					 <?php
-						$servername = "localhost";
-						$username = "allUser";
-						$password = "";
-						$dbname = "GestionFourniture";						
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-						// Check connection
-						if ($conn->connect_error)
-						{
-							die("Connection failed: " . $conn->connect_error);
-						} 						
-						$sql = "SELECT Nom, Matiere, SUM(Quantite) as Quantite FROM Professeur, Fourniture WHERE Fourniture.IDClasse = 0 AND Professeur.IDClasse = 0";
-						$result = $conn->query($sql);						
-						if ($result->num_rows > 0)
-						{
+			  
+				  <?php
+					 $servername = "localhost";
+					 $username = "allUser";
+					 $password = "";
+					 $dbname = "GestionFourniture";						
+					 // Create connection
+					 $conn = new mysqli($servername, $username, $password, $dbname);
+					 // Check connection
+					 if ($conn->connect_error)
+					 {
+						 die("Connection failed: " . $conn->connect_error);
+					 }
+					 $mail = $_SESSION['Email'];
+					 $sql = "SELECT Nom, Matiere FROM Professeur WHERE IDClasse = (SELECT IDClasse FROM Eleve WHERE Mail = '$mail')";
+					 $result = $conn->query($sql);						
+					 if ($result->num_rows > 0)
+					 {
+						
+						 while($row = $result->fetch_assoc())
+						 {
+						   echo '<table id="tableProfesseur" class="TableAffichage">';
+						   echo "<tr>";
+						   echo "<th>M. / Mme.</th>";
+						   echo "<th>Matière</th>"; 
+						   echo "</tr>";
 						   
-							while($row = $result->fetch_assoc())
-							{
-							  echo "<tr>";
-							  echo "<td>" .$row["Nom"]. "</td>";
-							  echo "<td>" .$row["Matiere"]. "</td>";
-							  echo "<td>" .$row["Quantite"]. "</td>";
-							  echo "</tr>";
-							}
-						}
-						else
-						{
-							echo "<tr><td colspan=3> 0 results </td></tr>";
-						}
-						$conn->close();
-					 ?>
-			  </table>
-		  </div>
-		  <div id="BlocAffichageListeFournitures" class="BlocAffichageListeFournitures" style="display: none">
-			  <table id="tableFourniture" class="TableAffichageFournitures">
-				  <label id="label_IdTableau" >Liste des fournitures demandé par le professeur</label>
-				  <tr>
-					  <th>Intitulé</th>
-					  <th>Nombre</th> 
-					  <th>Description</th>
-					</tr>
-					<?php
-						$servername = "localhost";
-						$username = "AllUser";
-						$password = "";
-						$dbname = "GestionFourniture";						
-						// Create connection
-						$conn = new mysqli($servername, $username, $password, $dbname);
-						$email=$_SESSION['email'];
-						$email=$conn->real_escape_string($email);
-						// Check connection
-						if ($conn->connect_error)
-						{
-							die("Connection failed: " . $conn->connect_error);
-						} 						
-						$sql = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDClasse = 0 ";
-						$result = $conn->query($sql);						
-						if ($result->num_rows > 0)
-						{
+						   echo "<tr>";
+						   echo "<td>" .$row["Nom"]. "</td>";
+						   echo "<td>" .$row["Matiere"]. "</td>";
+						   echo "</tr>";
+						   echo "</table>";
 						   
-							while($row = $result->fetch_assoc())
-							{
-							  echo "<tr>";
-							  echo "<td>" .$row["Intitule"]. "</td>";
-							  echo "<td>" .$row["Quantite"]. "</td>";
-							  echo "<td>" .$row["Description"]. "</td>";
-							  echo "</tr>";
-							}
-						}
-						else
-						{
-							echo "<tr><td colspan=3> 0 results </td></tr>";
-						}
-						$conn->close();
-					 ?>
-			  </table>
+						   echo '<table id="tableFourniture" class="TableAffichage">';
+						   echo "<tr>";
+						   echo "<th>Intitulé</th>";
+						   echo "<th>Nombre</th>"; 
+						   echo "<th>Description</th>";
+						   echo "</tr>";
+						   
+						   $sql2 = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDClasse = (SELECT IDClasse FROM Eleve WHERE Mail = '$mail') AND IDProfesseur = (SELECT IDProfesseur FROM Professeur WHERE Professeur.Nom = '" . $row["Nom"]. "')";
+						   $result2 = $conn->query($sql2);						
+						   if ($result2->num_rows > 0)
+						   {
+							  
+							   while($row2 = $result2->fetch_assoc())
+							   {
+								 echo "<tr>";
+								 echo "<td>" .$row2["Intitule"]. "</td>";
+								 echo "<td>" .$row2["Quantite"]. "</td>";
+								 echo "<td>" .$row2["Description"]. "</td>";
+								 echo "</tr>";
+								 
+							   }
+							   echo "</table>";
+						   }
+						   else
+						   {
+							   echo "<tr><td colspan=3> 0 results </td></tr>";
+						   }
+						   
+						 }
+					 }
+					 else
+					 {
+						 echo "<tr><td colspan=3> 0 results </td></tr>";
+					 }
+					 $conn->close();
+				  ?>
 		  </div>
 			<button id="BtnImpressionListeFourniturePDF" type="button" onclick="createPDF()">Imprimer PDF</button>
 	 </div>
