@@ -29,17 +29,7 @@
 		 <select name="DDL_Matière" id="DDL_Matière" onChange="store_DDL_Matiere()">
 			<option>Toutes les Matières</option>
 			<?php
-			   $servername = "localhost";
-			   $username = "root";
-			   $password = "root";
-			   $dbname = "GestionFourniture";						
-			   // Create connection
-			   $conn = new mysqli($servername, $username, $password, $dbname);
-			   // Check connection
-			   if ($conn->connect_error)
-			   {
-				   die("Connection failed: " . $conn->connect_error);
-			   }
+			   include('connexion.php');
 			   	$email=$_SESSION['Email'];
 	$email=$conn->real_escape_string($email);
 	$test="SELECT Droit from connection where Email='$email'";
