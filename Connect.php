@@ -2,30 +2,43 @@
 session_start();
 if(!isset($_GET['login']) && !isset($_GET['Password']))
 {
-	header('location : index.php');
+	header('location : Acceuil.php');
 	
 }
 else
 {
+	
 	if(0)
 	// if(!preg_match('/^[[:alnum:]]+$/',$_GET['login']) or !preg_match('/^[[:alnum:]]+$/',$_GET['Password']))
 	{
 		echo 'Vous devez entrer uniquement des lettres ou des chiffres <br/>';
-		echo '<a href=index.php" temp_href="index.php">Réessayer</a>';
+		echo '<a href=Acceuil.php" temp_href="Acceuil.php">Réessayer</a>';
 		exit();
 	}
 	else
 	{
-	include('connexion.php');
+	 $servername = "localhost";
+					 $username = "root";
+					 $password = "root";
+					 $dbname = "GestionFourniture";						
+					 // Create connection
+					 $conn = new mysqli($servername, $username, $password, $dbname);
+					  $conn->set_charset("utf8");
+					 // Check connection
+					 if ($conn->connect_error)
+					 {
+						 die("Connection failed: " . $conn->connect_error);
+					 }
 	$login=$_GET['login'];
 	$motdepasse=$_GET['Password'];
 	$login=$conn->real_escape_string($login);
 	$sql="SELECT * FROM connection WHERE Email='$login'";
+	
 	$requete1=$conn->query($sql);
 	if(mysqli_num_rows($requete1)==0)
 	{
 		echo 'Ce login est faux ! <br/> ';
-		echo '<a href="index.php" temp_href="index.php">Réessayer</a>';
+		echo '<a href="Acceuil.php" temp_href="Acceuil.php">Réessayer</a>';
 		exit();
 	}
 	else
@@ -63,7 +76,7 @@ else
 	{
 		
 		echo 'Le Pass est faux ! <br/> ';
-		echo '<a href="index.php" temp_href="index.php">Réessayer</a>';
+		echo '<a href="Acceuil.php" temp_href="Acceuil.php">Réessayer</a>';
 		exit();
 	}
 	}
