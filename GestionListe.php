@@ -30,8 +30,8 @@
 			<option>Toutes les Matières</option>
 			<?php
 			   $servername = "localhost";
-			   $username = "AllUser";
-			   $password = "";
+			   $username = "root";
+			   $password = "root";
 			   $dbname = "GestionFourniture";						
 			   // Create connection
 			   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -40,6 +40,15 @@
 			   {
 				   die("Connection failed: " . $conn->connect_error);
 			   }
+			   	$email=$_SESSION['Email'];
+	$email=$conn->real_escape_string($email);
+	$test="SELECT Droit from connection where Email='$email'";
+	$test=$conn->query($test);
+	$droit=mysqli_fetch_array($test);
+	if($droit[0]<1)
+	{
+		header('Location: hack.html');
+	}
 			   $mail = $_SESSION["Email"];
 			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE Professeur.Mail = '$mail'";
 			   $result = $conn->query($sql);						
@@ -58,8 +67,8 @@
 		   <option>Toutes les Classes</option>
 		   <?php
 				  $servername = "localhost";
-				  $username = "AllUser";
-				  $password = "";
+				  $username = "root";
+				  $password = "root";
 				  $dbname = "GestionFourniture";						
 				  // Create connection
 				  $conn = new mysqli($servername, $username, $password, $dbname);
@@ -90,8 +99,8 @@
 	  <p class="cb">
 	  <?php
 		 $servername = "localhost";
-		 $username = "AllUser";
-		 $password = "";
+		 $username = "root";
+		 $password = "root";
 		 $dbname = "GestionFourniture";						
 		 // Create connection
 		 $conn = new mysqli($servername, $username, $password, $dbname);

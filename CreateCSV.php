@@ -1,8 +1,8 @@
 <?php
     $handle = fopen("liste_eleve.csv", "w");
     $servername = "localhost";
-    $username = "AllUser";
-    $password = "";
+    $username = "root";
+    $password = "root";
     $dbname = "GestionFourniture";						
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);

@@ -38,8 +38,8 @@
 		   <option>Tous les niveaux</option>      
 		   <?php
 			   $servername = "localhost";
-			   $username = "AllUser";
-			   $password = "";
+			   $username = "root";
+			   $password = "root";
 			   $dbname = "GestionFourniture";						
 			   // Create connection
 			   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -47,7 +47,16 @@
 			   if ($conn->connect_error)
 			   {
 				   die("Connection failed: " . $conn->connect_error);
-			   } 						
+			   } 				
+					$email=$_SESSION['Email'];
+	$email=$conn->real_escape_string($email);
+	$test="SELECT Droit from connection where Email='$email'";
+	$test=$conn->query($test);
+	$droit=mysqli_fetch_array($test);
+	if($droit[0]<2)
+	{
+		header('Location: hack.html');
+	}
 			   $sql = "SELECT DISTINCT Niveau FROM Classe WHERE 1";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
@@ -67,8 +76,8 @@
 		 <p class="cbClasse">
 			 <?php
 			$servername = "localhost";
-			$username = "AllUser";
-			$password = "";
+			$username = "root";
+			$password = "root";
 			$dbname = "GestionFourniture";						
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbname);
@@ -109,8 +118,8 @@
 		   <option>Toutes les Matières</option>
 			<?php
 			   $servername = "localhost";
-			   $username = "AllUser";
-			   $password = "";
+			   $username = "root";
+			   $password = "root";
 			   $dbname = "GestionFourniture";						
 			   // Create connection
 			   $conn = new mysqli($servername, $username, $password, $dbname);
@@ -136,8 +145,8 @@
 		 <p class="cbProfesseur">
 		 <?php
 			$servername = "localhost";
-			$username = "AllUser";
-			$password = "";
+			$username = "root";
+			$password = "root";
 			$dbname = "GestionFourniture";						
 			// Create connection
 			$conn = new mysqli($servername, $username, $password, $dbname);

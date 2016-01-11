@@ -42,8 +42,8 @@ session_start();
 			  
 				  <?php
 					 $servername = "localhost";
-					 $username = "allUser";
-					 $password = "";
+					 $username = "root";
+					 $password = "root";
 					 $dbname = "GestionFourniture";						
 					 // Create connection
 					 $conn = new mysqli($servername, $username, $password, $dbname);

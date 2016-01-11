@@ -29,8 +29,8 @@
 	  <?php
 		 $i=0;
 		 $servername = "localhost";
-		 $username = "allUser";
-		 $password = "";
+		 $username = "root";
+		 $password = "root";
 		 $dbname = "GestionFourniture";						
 		 // Create connection
 		 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -39,8 +39,17 @@
 		 {
 			 die("Connection failed: " . $conn->connect_error);
 		 }
-		 $mail = $_SESSION["Email"];
-		 $sql = "SELECT INTITULE, MATIERE FROM Classe, Professeur WHERE Professeur.Mail = '$mail'";
+		  	$email=$_SESSION['Email'];
+	$email=$conn->real_escape_string($email);
+	$test="SELECT Droit from connection where Email='$email'";
+	$test=$conn->query($test);
+	$droit=mysqli_fetch_array($test);
+	if($droit[0]<1)
+	{
+		header('Location: hack.html');
+	}
+		 $email = $_SESSION["Email"];
+		 $sql = "SELECT INTITULE, MATIERE, (SELECT SUM(QUANTITE) FROM FOURNITURE WHERE IDCLASSE=0) as QUANTITE FROM Classe, Professeur WHERE Professeur.Mail = '$email'";
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)
 		 {
@@ -50,11 +59,13 @@
 				  echo "<tr>";
 				  echo "<th>Classe</th>";
 				  echo "<th>Matière</th>";
+				  echo "<th>Quantité</th>";
 				  echo "</tr>";
 				  
 				  echo "<tr>";
 				  echo "<td>" .$row["INTITULE"]. "</td>";
 				  echo "<td>" .$row["MATIERE"]. "</td>";
+				  echo "<td>" .$row["QUANTITE"]. "</td>";
 				  echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
 				  echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
 				  echo "</tr>";

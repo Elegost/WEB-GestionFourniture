@@ -22,8 +22,8 @@
 	</div>
 <?php
     $servername = "localhost";
-    $username = "allUser";
-    $password = "";
+    $username = "root";
+    $password = "root";
     $dbname = "GestionFourniture";						
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -32,6 +32,15 @@
     {
         die("Connection failed: " . $conn->connect_error);
     }
+		$email=$_SESSION['Email'];
+	$email=$conn->real_escape_string($email);
+	$test="SELECT Droit from connection where Email='$email'";
+	$test=$conn->query($test);
+	$droit=mysqli_fetch_array($test);
+	if($droit[0]<2)
+	{
+		header('Location: hack.html');
+	}
     $requete1 = "SELECT SUM(Quantite) FROM fourniture INNER JOIN professeur ON fourniture.IDProfesseur = professeur.IDProfesseur WHERE Matiere='Anglais'";
     $result1=$conn->query($requete1);
 	$result1=mysqli_fetch_array($result1);
