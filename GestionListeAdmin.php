@@ -37,17 +37,7 @@
 
 		   <option>Tous les niveaux</option>      
 		   <?php
-			   $servername = "localhost";
-			   $username = "root";
-			   $password = "root";
-			   $dbname = "GestionFourniture";						
-			   // Create connection
-			   $conn = new mysqli($servername, $username, $password, $dbname);
-			   // Check connection
-			   if ($conn->connect_error)
-			   {
-				   die("Connection failed: " . $conn->connect_error);
-			   } 				
+			  include('connexion.php');			
 					$email=$_SESSION['Email'];
 	$email=$conn->real_escape_string($email);
 	$test="SELECT Droit from connection where Email='$email'";
@@ -75,17 +65,7 @@
 		 
 		 <p class="cbClasse">
 			 <?php
-			$servername = "localhost";
-			$username = "root";
-			$password = "root";
-			$dbname = "GestionFourniture";						
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			// Check connection
-			if ($conn->connect_error)
-			{
-				die("Connection failed: " . $conn->connect_error);
-			}
+			include('connexion.php');
 			$sql = "SELECT INTITULE, IDCLASSE FROM Classe WHERE 1";
 			$DDL_Niveau = $_POST['DDL_Niveau'];
 			if ($DDL_Niveau != 'Tous les niveaux')
@@ -117,17 +97,7 @@
 		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
 		   <option>Toutes les Matières</option>
 			<?php
-			   $servername = "localhost";
-			   $username = "root";
-			   $password = "root";
-			   $dbname = "GestionFourniture";						
-			   // Create connection
-			   $conn = new mysqli($servername, $username, $password, $dbname);
-			   // Check connection
-			   if ($conn->connect_error)
-			   {
-				   die("Connection failed: " . $conn->connect_error);
-			   } 						
+			   include('connexion.php'); 						
 			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE 1";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
@@ -144,17 +114,7 @@
 		 <form action="insertNewProf.php" method="post">
 		 <p class="cbProfesseur">
 		 <?php
-			$servername = "localhost";
-			$username = "root";
-			$password = "root";
-			$dbname = "GestionFourniture";						
-			// Create connection
-			$conn = new mysqli($servername, $username, $password, $dbname);
-			// Check connection
-			if ($conn->connect_error)
-			{
-				die("Connection failed: " . $conn->connect_error);
-			}
+			include('connexion.php');
 			$sql = "SELECT Nom, Matiere FROM Professeur WHERE 1";
 			if ($DDL_Matière != '')
 			   $sql .= " AND Matiere='$DDL_Matière'";

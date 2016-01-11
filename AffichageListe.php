@@ -22,13 +22,6 @@ session_start();
 </head>
 
 <body>
-	  <?php
-		 $sqlConn = mysqli_connect("localhost","AllUser","");
-		 if (!$sqlConn)
-		 {
-			 die("Database connection failed : " . mysql_error());
-		 }
-	  ?>
 	  <div class="BlocHeader">
 		<img id="logo" src="Image/logo.jpg" >
 		   <form action="Acceuil.php" method="post">
@@ -41,17 +34,7 @@ session_start();
 		 <div id="BlocAffichageListeProf" class="BlocAffichageListeProf">
 			  
 				  <?php
-					 $servername = "localhost";
-					 $username = "root";
-					 $password = "root";
-					 $dbname = "GestionFourniture";						
-					 // Create connection
-					 $conn = new mysqli($servername, $username, $password, $dbname);
-					 // Check connection
-					 if ($conn->connect_error)
-					 {
-						 die("Connection failed: " . $conn->connect_error);
-					 }
+					 include('connexion.php');
 					 $mail = $_SESSION['Email'];
 					 $sql = "SELECT Nom, Matiere FROM Professeur WHERE IDClasse = (SELECT IDClasse FROM Eleve WHERE Mail = '$mail')";
 					 $result = $conn->query($sql);						
