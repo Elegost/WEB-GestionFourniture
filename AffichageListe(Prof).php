@@ -38,8 +38,9 @@
 	{
 		header('Location: hack.html');
 	}
-		 $mail = $_SESSION["Email"];
-		 $sql = "SELECT INTITULE, MATIERE, (SELECT SUM(QUANTITE) FROM FOURNITURE WHERE IDCLASSE=0) as QUANTITE FROM Classe, Professeur WHERE Professeur.Mail = '$mail'";
+		$sql="SELECT IDProfesseur from professeur where Mail='$email'";
+		 $result1=$conn->query($sql);
+		 $sql = "SELECT professeur.Nom AS Nom, professeur.Matiere AS Matiere, classe.intitule as INTITULE FROM professeur INNER JOIN classe ON (classe.IDProfesseur = professeur.IDProfesseur) WHERE classe.IDProfesseur = 'result1'";
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)
 		 {
