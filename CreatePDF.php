@@ -40,7 +40,7 @@ $pdf->SetX(25);
 $pdf->Cell(50, 6, 'Intitule', 1, 0, 'L', 1);
 $pdf->Cell(30, 6, 'Quantite', 1, 0, 'C', 1);
 $pdf->Cell(80, 6, 'Description', 1, 0, 'R', 1);
-
+if (! isset($row_height)) $row_height = 0;
 $y_axis = $y_axis + $row_height;
 
 //Select the Products you want to show in your PDF file

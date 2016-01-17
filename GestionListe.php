@@ -1,7 +1,7 @@
-<html>
 <?php
 	  session_start();
 ?>
+<html>
 <head>
    <title>Gestion de Liste</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -29,27 +29,27 @@
 		 <select name="DDL_Matière" id="DDL_Matière" onChange="store_DDL_Matiere()">
 			<option>Toutes les Matières</option>
 			<?php
-			   include('connexion.php');
-			   	$email=$_SESSION['Email'];
-	$email=$conn->real_escape_string($email);
-	$test="SELECT Droit from connection where Email='$email'";
-	$test=$conn->query($test);
-	$droit=mysqli_fetch_array($test);
-	if($droit[0]<1)
-	{
-		header('Location: hack.html');
-	}
-			   $mail = $_SESSION["Email"];
-			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE Professeur.Mail = '$mail'";
-			   $result = $conn->query($sql);						
-			   if ($result->num_rows > 0)
-			   {			
-				   while($row = $result->fetch_assoc())
-				   {
-					 echo "<option>" . $row["Matiere"] . "</option>";
-				   }
-			   }
-			   $conn->close();
+			include('connexion.php');
+			$email=$_SESSION['Email'];
+			$email=$conn->real_escape_string($email);
+			$test="SELECT Droit from connection where Email='$email'";
+			$test=$conn->query($test);
+			$droit=mysqli_fetch_array($test);
+			if($droit[0]<1)
+			{
+				header('Location: ha$emailck.html');
+			}
+			$mail = $_SESSION["Email"];
+			$sql = "SELECT DISTINCT Matiere FROM Professeur WHERE Professeur.Mail = '$mail'";
+			$result = $conn->query($sql);						
+			if ($result->num_rows > 0)
+			{			
+				while($row = $result->fetch_assoc())
+				{
+				  echo "<option>" . $row["Matiere"] . "</option>";
+				}
+			}
+			$conn->close();
 			?>
 		 </select>
   
@@ -101,11 +101,17 @@
 		 }
 		 $mail = $_SESSION["Email"];
 		 $sql = "SELECT INTITULE, MATIERE, Classe.IDClasse FROM CLASSE, Professeur WHERE Professeur.IDProfesseur = 0";
-		 $DDL_Matière = $_POST['DDL_Matière'];
-		 $DDL_Classe = $_POST['DDL_Classe'];
-		 if ($DDL_Matière != 'Toutes les Matières')
+		 if (isset($_POST['DDL_Matière']))
+		 {
+			$DDL_Matière = $_POST['DDL_Matière'];
+		 }
+	     if (isset($_POST['DDL_Classe']))
+		 {
+			$DDL_Classe = $_POST['DDL_Classe'];
+		 }
+		 if (isset($DDL_Matière) && $DDL_Matière != 'Toutes les Matières')
 			$sql .= " AND MATIERE='$DDL_Matière'";
-		 if ($DDL_Classe != 'Toutes les Classes')
+		 if (isset($DDL_Classe) && $DDL_Classe != 'Toutes les Classes')
 			$sql .= " AND INTITULE='$DDL_Classe'";
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)

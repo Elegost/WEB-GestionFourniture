@@ -1,7 +1,7 @@
-<html>
 <?php
    session_start();
 ?>
+<html>
 <head>
    <title>Gestion de Liste (ADMIN)</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -67,16 +67,20 @@
 			 <?php
 			include('connexion.php');
 			$sql = "SELECT INTITULE, IDCLASSE FROM Classe WHERE 1";
-			$DDL_Niveau = $_POST['DDL_Niveau'];
-			if ($DDL_Niveau != 'Tous les niveaux')
+			if(isset($_POST['DDL_Niveau']))
+			{
+			   $DDL_Niveau = $_POST['DDL_Niveau'];
+			}
+			if (isset($DDL_Niveau) && $DDL_Niveau != 'Tous les niveaux')
 			   $sql .= " AND NIVEAU='$DDL_Niveau'";
 			$result = $conn->query($sql);						
 			if ($result->num_rows > 0)
 			{			
 				while($row = $result->fetch_assoc())
 				{
+				  $row_IDClasse = (isset($row["IDClasse"]) ? $row["IDClasse"] : "");
 				  echo "<label>";
-				  echo '<input type="checkbox" value="' . $row["IDClasse"] . ' ">';
+				  echo '<input type="checkbox" value="' . $row_IDClasse . ' ">';
 				  echo $row["INTITULE"];
 				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
 				  echo "</label>";
@@ -116,9 +120,9 @@
 		 <?php
 			include('connexion.php');
 			$sql = "SELECT Nom, Matiere FROM Professeur WHERE 1";
-			if ($DDL_Matière != '')
+			if (isset($DDL_Matière) && $DDL_Matière != '')
 			   $sql .= " AND Matiere='$DDL_Matière'";
-			if ($DDL_Classe != '')
+			if (isset($DDL_Classe) && $DDL_Classe != '')
 			   $sql .= " AND Classe='$DDL_Classe'";
 			$result = $conn->query($sql);						
 			if ($result->num_rows > 0)
