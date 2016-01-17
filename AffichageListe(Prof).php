@@ -38,9 +38,10 @@
 	{
 		header('Location: hack.html');
 	}
-		$sql="SELECT IDProfesseur from professeur where Mail='$email'";
+		$sql="SELECT IDClasse from professeur where Mail='$email'";
 		 $result1=$conn->query($sql);
-		 $sql = "SELECT professeur.Nom AS Nom, professeur.Matiere AS Matiere, classe.intitule as INTITULE FROM professeur INNER JOIN classe ON (classe.IDProfesseur = professeur.IDProfesseur) WHERE classe.IDProfesseur = 'result1'";
+		 $result1=mysqli_fetch_array($result1);
+		 $sql = "SELECT classe.intitule as INTITULE FROM classe WHERE classe.IDClasse = $result1[0]";
 		 $result = $conn->query($sql);						
 		 if ($result->num_rows > 0)
 		 {
@@ -49,13 +50,11 @@
 				  echo '<table class="TableAffichage">';
 				  echo "<tr>";
 				  echo "<th>Classe</th>";
-				  echo "<th>Matière</th>";
 
 				  echo "</tr>";
 				  
 				  echo "<tr>";
 				  echo "<td>" .$row["INTITULE"]. "</td>";
-				  echo "<td>" .$row["MATIERE"]. "</td>";
 				  echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
 				  echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
 				  echo "</tr>";
@@ -68,7 +67,7 @@
 				  echo "<th>Description</th>";
 				  echo "</tr>";
 				  
-				  $sql2 = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDProfesseur = (SELECT IDProfesseur FROM Professeur WHERE Mail = '$mail')";
+				  $sql2 = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDProfesseur = (SELECT IDProfesseur FROM Professeur WHERE Mail = '$email')";
 				  $result2 = $conn->query($sql2);						
 				  if ($result2->num_rows > 0)
 				  {
