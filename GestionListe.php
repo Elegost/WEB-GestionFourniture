@@ -68,7 +68,7 @@
 					  die("Connection failed: " . $conn->connect_error);
 				  }
 				  $mail = $_SESSION["Email"];
-				  $sql = "SELECT DISTINCT Intitule FROM Classe WHERE 1";
+				  $sql = "SELECT DISTINCT Intitule FROM Classe INNER JOIN Professeur ON Classe.IDClasse = Professeur.IDClasse WHERE Professeur.mail = '$mail'";
 				  echo "$sql";
 				  $result = $conn->query($sql);						
 				  if ($result->num_rows > 0)
@@ -100,7 +100,8 @@
 			 die("Connection failed: " . $conn->connect_error);
 		 }
 		 $mail = $_SESSION["Email"];
-		 $sql = "SELECT INTITULE, MATIERE, Classe.IDClasse FROM CLASSE, Professeur WHERE Professeur.IDProfesseur = 0";
+		 $sql = "SELECT MATIERE, INTITULE, Classe.IDCLASSE FROM professeur INNER JOIN Classe ON Classe.IDClasse = professeur.IDClasse WHERE Mail = '$mail'";
+		 
 		 if (isset($_POST['DDL_Matière']))
 		 {
 			$DDL_Matière = $_POST['DDL_Matière'];
@@ -114,12 +115,12 @@
 		 if (isset($DDL_Classe) && $DDL_Classe != 'Toutes les Classes')
 			$sql .= " AND INTITULE='$DDL_Classe'";
 		 $result = $conn->query($sql);						
-		 if ($result->num_rows > 0)
+		 if ($result && $result->num_rows > 0)
 		 {			
 			 while($row = $result->fetch_assoc())
 			 {
 			   echo "<label>";
-			   echo '<input type="checkbox" name="cbclasse[]" value="' . $row["IDClasse"] . '">';
+			   echo '<input type="checkbox" name="cbclasse[]" value="' . $row["IDCLASSE"] . '">';
 			   echo $row["INTITULE"] . "(" . $row["MATIERE"] . ")";	
 			   echo "</label>";
 			 }
