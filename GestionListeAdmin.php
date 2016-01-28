@@ -38,15 +38,15 @@
 		   <option>Tous les niveaux</option>      
 		   <?php
 			  include('connexion.php');			
-					$email=$_SESSION['Email'];
-	$email=$conn->real_escape_string($email);
-	$test="SELECT Droit from connection where Email='$email'";
-	$test=$conn->query($test);
-	$droit=mysqli_fetch_array($test);
-	if($droit[0]<2)
-	{
-		header('Location: hack.html');
-	}
+			   $email=$_SESSION['Email'];
+			   $email=$conn->real_escape_string($email);
+			   $test="SELECT Droit from connection where Email='$email'";
+			   $test=$conn->query($test);
+			   $droit=mysqli_fetch_array($test);
+			   if($droit[0]<2)
+			   {
+				   header('Location: hack.html');
+			   }
 			   $sql = "SELECT DISTINCT Niveau FROM Classe WHERE 1";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
@@ -145,7 +145,9 @@
 		 </p>
 	  </div>
 	  
-	  <button id="BtnValiderListeFourniture" type="submit" class="BtnValider"> Valider </button>
+	  <button id="BtnValiderListeFournitureProf" name="submit" type="submit" class="BtnValider" value="ButtonValiderProf" style="display:none"> Valider </button>
+	  <button id="BtnValiderListeFournitureClasse" name="submit" type="submit" class="BtnValider" value="ButtonValiderClasse" > Valider </button>
+
 	  </div>
 	  
 	  <div id="BlocCreationListeClasse" class="BlocCreationListeClasse" >
@@ -280,7 +282,11 @@
 			div = document.getElementById("BlocCreationListeClasse");
 			div.style.display = "inline";
 			div = document.getElementById("BlocCreationListeProfesseur");
-			div.style.display = "none";	
+			div.style.display = "none";
+			div = document.getElementById("BtnValiderListeFournitureProf");
+			div.style.display = "none";
+			div = document.getElementById("BtnValiderListeFournitureClasse");
+			div.style.display = "inline";
          }
 		 
 		 function handleButtonClick_AfficherProfesseur() {
@@ -291,7 +297,11 @@
 			div = document.getElementById("BlocCreationListeClasse");
 			div.style.display = "none";
 			div = document.getElementById("BlocCreationListeProfesseur");
-			div.style.display = "inline";	
+			div.style.display = "inline";
+			div = document.getElementById("BtnValiderListeFournitureProf");
+			div.style.display = "inline";
+			div = document.getElementById("BtnValiderListeFournitureClasse");
+			div.style.display = "none";
          }
 		 
 		 function createCSV()
