@@ -13,25 +13,32 @@
     {
         die("Connection failed: " . $conn->connect_error);
     }
-    $mail = $_SESSION["Email"];
-	$cbClasse = null;
-	  if(isset($_POST['cbclasse']))
-	  {
-			$cbClasse = $_POST['cbclasse'];
-	  }
+	  $mail = $_SESSION["Email"];
+	  $cbClasse = null;
+	  if(isset($_POST['cbclasse'])) $cbClasse = $_POST['cbclasse'];
+	  $Intitule = null;
+	  if(isset($_POST['Intitule'])) $Intitule = $_POST['Intitule'];
+	  $Description = null;
+	  if(isset($_POST['Description'])) $Description = $_POST['Description'];
+	  $Quantite = null;
+	  if(isset($_POST['Quantite'])) $Quantite = $_POST['Quantite'];
+	  
 
 	if ($cbClasse)
 	{
 	  foreach($cbClasse as $idClasse)
 	  {
-		  $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
-				  Values ('$_POST[Intitule]', '$_POST[Description]', $_POST[Quantite], $idClasse, (SELECT IDProfesseur FROM Professeur WHERE MAIL='$mail' AND IDClasse=$idClasse))";
-		  if(!mysqli_query($conn, $sql))
-		  {
-			  echo("Description erreur : " . mysqli_error($conn));
-			  echo($sql);
-			  echo "</br>";
-		  }
+			foreach($Intitule as $i => $tabIntitule)
+			{
+				  $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
+						  Values ('$tabIntitule', '$Description[$i]', $Quantite[$i], $idClasse, (SELECT IDProfesseur FROM Professeur WHERE MAIL='$mail' AND IDClasse=$cbClasse[$i]))";
+				  if(!mysqli_query($conn, $sql))
+				  {
+					  echo("Description erreur : " . mysqli_error($conn));
+					  echo($sql);
+					  echo "</br>";
+				  }
+			}
 	  }
 	  $conn->close();
 	}

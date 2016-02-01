@@ -149,18 +149,18 @@
 					  <th>Description</th>
 					</tr>
 					<tr>
-					  <td><input type="text" name="Intitule" ></td>
-					  <td><input type="text" name="Quantite"></td> 
-					  <td><input type="text" name="Description"></td>
-					  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
+					  <td><input type="text" name="Intitule[]"></td>
+					  <td><input type="text" name="Quantite[]"></td> 
+					  <td><input type="text" name="Description[]"></td>
+					  <td><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
 					</tr>
 					<tr>
 					  <td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button"> + </button></td>
 					</tr>
 			  </table>
 		  </div>
-	  </form>
-   </div>
+	  </div>
+
 
    <script src="Cookie.js"></script>
    <script type="text/javascript">
@@ -175,9 +175,9 @@
 		  var cell2 = row.insertCell(1);
 		  var cell3 = row.insertCell(2);
 		  var cell4 = row.insertCell(3);
-		  cell1.innerHTML = '<input type="text" name="Intitulé">';
-		  cell2.innerHTML = '<input type="text" name="Quantite">';
-		  cell3.innerHTML = '<input type="text" name="Description">';
+		  cell1.innerHTML = '<input type="text" name="Intitule[]">';
+		  cell2.innerHTML = '<input type="text" name="Quantite[]">';
+		  cell3.innerHTML = '<input type="text" name="Description[]">';
 		  cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
 	  }
 		
@@ -217,7 +217,8 @@
 	  var DDL_Classe = document.getElementById("DDL_Classe");
 	  if (field2 = getCookie("DDL_Classe_index")) DDL_Classe.selectedIndex = field2;
 	 </script>
-	 
+	 </form>
+
 </body>
 
 </html>

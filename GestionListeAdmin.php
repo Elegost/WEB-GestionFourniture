@@ -115,7 +115,7 @@
 			?>
 		 </select>
 		 
-		 <form action="insertNewProf.php" method="post">
+		 <form action="insertNewClasse.php" method="post">
 		 <p class="cbProfesseur">
 		 <?php
 			include('connexion.php');
@@ -145,8 +145,7 @@
 		 </p>
 	  </div>
 	  
-	  <button id="BtnValiderListeFournitureProf" name="submit" type="submit" class="BtnValider" value="ButtonValiderProf" style="display:none"> Valider </button>
-	  <button id="BtnValiderListeFournitureClasse" name="submit" type="submit" class="BtnValider" value="ButtonValiderClasse" > Valider </button>
+	  <button id="BtnValiderListe" name="submit" type="submit" class="BtnValider" value="ButtonValider"> Valider </button>
 
 	  </div>
 	  
@@ -159,8 +158,8 @@
 			   </tr>
 		 
 		 <tr>
-			 <td><input type="text" name="Intitule"></td>
-			 <td><input type="text" name="Niveau"></td>
+			 <td><input type="text" name="intituleClasse"></td>
+			 <td><input type="text" name="niveauClasse"></td>
 			 <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
 		 </tr>
 		 </table>
@@ -172,9 +171,9 @@
 				<th>Email</th>
 			  </tr>
 			  <tr>
-				  <td><input type="text" name="Nom"></td>
-				  <td><input type="text" name="Matiere"></td>
-				  <td><input type="text" name="Email"></td>
+				  <td><input type="text" name="NomProf[]"></td>
+				  <td><input type="text" name="MatiereProf[]"></td>
+				  <td><input type="text" name="MailProf[]"></td>
 				  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
 			  </tr>	
 			  <tr>
@@ -189,8 +188,8 @@
 					  <th>Email</th>
 					</tr>
 					<tr>
-						<td><input type="text" name="NomEleve"></td>
-						<td><input type="text" name="Email"></td>
+						<td><input type="text" name="NomEleve[]"></td>
+						<td><input type="text" name="MailEleve[]"></td>
 						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_eleveClasse, this)"/></td>
 					</tr>			
 					<tr>
@@ -283,10 +282,6 @@
 			div.style.display = "inline";
 			div = document.getElementById("BlocCreationListeProfesseur");
 			div.style.display = "none";
-			div = document.getElementById("BtnValiderListeFournitureProf");
-			div.style.display = "none";
-			div = document.getElementById("BtnValiderListeFournitureClasse");
-			div.style.display = "inline";
          }
 		 
 		 function handleButtonClick_AfficherProfesseur() {
@@ -298,10 +293,6 @@
 			div.style.display = "none";
 			div = document.getElementById("BlocCreationListeProfesseur");
 			div.style.display = "inline";
-			div = document.getElementById("BtnValiderListeFournitureProf");
-			div.style.display = "inline";
-			div = document.getElementById("BtnValiderListeFournitureClasse");
-			div.style.display = "none";
          }
 		 
 		 function createCSV()
