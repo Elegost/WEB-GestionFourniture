@@ -15,7 +15,7 @@ session_start();
 		
 		function createPDF()
 		 {
-			window.location.assign('CreatePDF.php');
+			window.location.assign('../FonctionsPhp/CreatePDF.php');
 		 }
     </script>
    
@@ -23,7 +23,7 @@ session_start();
 
 <body>
 	  <div class="BlocHeader">
-		<img id="logo" src="Image/logo.jpg" >
+		<img id="logo" src="../Image/logo.jpg" >
 		   <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		   </form>
@@ -34,7 +34,7 @@ session_start();
 		 <div id="BlocAffichageListeProf" class="BlocAffichageListeProf">
 			  
 				  <?php
-					 include('connexion.php');
+					 include('../connexion.php');
 					 $mail = $_SESSION['Email'];
 					 $sql = "SELECT Nom, Matiere FROM Professeur WHERE IDClasse = (SELECT IDClasse FROM Eleve WHERE Mail = '$mail')";
 					 $result = $conn->query($sql);						

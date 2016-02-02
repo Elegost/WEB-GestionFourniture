@@ -1,6 +1,6 @@
 <?php
 	  session_start();
-	  include('logger.php');
+	  //include('logger.php');
 ?>
 <html>
 
@@ -17,7 +17,7 @@
 
 <body>
    <div class="BlocHeader">
-		 <img id="logo" src="Image/logo.jpg" >
+		 <img id="logo" src="../Image/logo.jpg" >
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
@@ -29,7 +29,7 @@
 	  
 	  <?php
 	  $i=0;
-	  include('connexion.php');
+	  include('../connexion.php');
 	  $email=$_SESSION['Email'];
 	  $email=$conn->real_escape_string($email);
 	  $test="SELECT Droit from connection where Email='$email'";
@@ -37,7 +37,7 @@
 	  $droit=mysqli_fetch_array($test);
 	  if($droit[0]<1)
 	  {
-		  header('Location: hack.html');
+		  header('Location: ../hack.html');
 	  }
 	  $sql="SELECT IDClasse from professeur where Mail='$email'";
 	  $result1=$conn->query($sql);
@@ -56,8 +56,8 @@
 				 
 				 echo "<tr>";
 				 echo "<td>" .$row["INTITULE"]. "</td>";
-				 echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
-				 echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
+				 echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="../Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
+				 echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
 				 echo "</tr>";
 				 echo "</table>";
 				 

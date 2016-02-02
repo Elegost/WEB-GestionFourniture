@@ -13,8 +13,8 @@
 
 <body>
     <div class="BlocHeader">
-		 <img id="logo" src="Image/logo.jpg" >
-		 <form action="Acceuil.php" method="post">
+		 <img id="logo" src="../Image/logo.jpg" >
+		 <form action="../PageWeb/Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
 		<label id="IdUser" for="IdUser">Bonjour <?php echo $_SESSION['Email'];?></label>
@@ -37,7 +37,7 @@
 
 		   <option>Tous les niveaux</option>      
 		   <?php
-			  include('connexion.php');			
+			  include('../connexion.php');			
 			   $email=$_SESSION['Email'];
 			   $email=$conn->real_escape_string($email);
 			   $test="SELECT Droit from connection where Email='$email'";
@@ -45,7 +45,7 @@
 			   $droit=mysqli_fetch_array($test);
 			   if($droit[0]<2)
 			   {
-				   header('Location: hack.html');
+				   header('Location: ../hack.html');
 			   }
 			   $sql = "SELECT DISTINCT Niveau FROM Classe WHERE 1";
 			   $result = $conn->query($sql);						
@@ -65,7 +65,7 @@
 		 
 		 <p class="cbClasse">
 			 <?php
-			include('connexion.php');
+			include('../connexion.php');
 			$sql = "SELECT INTITULE, IDCLASSE FROM Classe WHERE 1";
 			if(isset($_POST['DDL_Niveau']))
 			{
@@ -82,7 +82,7 @@
 				  echo "<label>";
 				  echo '<input type="checkbox" value="' . $row_IDClasse . ' ">';
 				  echo $row["INTITULE"];
-				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
+				  echo '<img id="ButtonModifierClasse" src="../Image/editer.png" class="icone_table" alt="Modifier classe"/>';
 				  echo "</label>";
 				}
 			}
@@ -101,7 +101,7 @@
 		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
 		   <option>Toutes les Matières</option>
 			<?php
-			   include('connexion.php'); 						
+			   include('../connexion.php'); 						
 			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE 1";
 			   $result = $conn->query($sql);						
 			   if ($result->num_rows > 0)
@@ -115,10 +115,10 @@
 			?>
 		 </select>
 		 
-		 <form action="insertNewClasse.php" method="post">
+		 <form action="../FonctionsPhp/insertNewClasse.php" method="post">
 		 <p class="cbProfesseur">
 		 <?php
-			include('connexion.php');
+			include('../connexion.php');
 			$sql = "SELECT Nom, Matiere FROM Professeur WHERE 1";
 			if (isset($DDL_Matière) && $DDL_Matière != '')
 			   $sql .= " AND Matiere='$DDL_Matière'";
@@ -132,7 +132,7 @@
 				  echo "<label>";
 				  echo '<input type="checkbox">';
 				  echo $row["Nom"] . "(" . $row["Matiere"] . ")";
-				  echo '<img id="ButtonModifierClasse" src="Image/editer.png" class="icone_table" alt="Modifier classe"/>';
+				  echo '<img id="ButtonModifierClasse" src="../Image/editer.png" class="icone_table" alt="Modifier classe"/>';
 				  echo "</label>";
 				}
 			}
@@ -160,7 +160,7 @@
 		 <tr>
 			 <td><input type="text" name="intituleClasse"></td>
 			 <td><input type="text" name="niveauClasse"></td>
-			 <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
+			 <td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
 		 </tr>
 		 </table>
 		 <table id="Table_professeurClasse" class="TableCreation" >
@@ -174,7 +174,7 @@
 				  <td><input type="text" name="NomProf[]"></td>
 				  <td><input type="text" name="MatiereProf[]"></td>
 				  <td><input type="text" name="MailProf[]"></td>
-				  <td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
+				  <td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
 			  </tr>	
 			  <tr>
 				<td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableprofesseurClasse()"> + </button></td>
@@ -190,7 +190,7 @@
 					<tr>
 						<td><input type="text" name="NomEleve[]"></td>
 						<td><input type="text" name="MailEleve[]"></td>
-						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_eleveClasse, this)"/></td>
+						<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_eleveClasse, this)"/></td>
 					</tr>			
 					<tr>
 					  <td colspan=2><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableEleveClasse()"> + </button></td>
@@ -210,7 +210,7 @@
 						<td><input type="text" name="NomProf"></td>
 						<td><input type="text" name="MatiereProf"></td>
 						<td><input type="text" name="EmailProf"></td>
-						<td class="RowTableEdition"><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(table_ajoutprofesseur, this)"/></td>
+						<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(table_ajoutprofesseur, this)"/></td>
 					</tr>
 				  
 					<tr>
@@ -233,7 +233,7 @@
 			cell1.innerHTML = '<input type="text" name="NomProf">';
 			cell2.innerHTML = '<input type="text" name="Matière">';
 			cell3.innerHTML = '<input type="text" name="EmailProf">';
-			cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+			cell4.innerHTML = '<img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
 		  }
 		  
 		  function addNewRow_tableprofesseurClasse() {
@@ -247,7 +247,7 @@
 			cell1.innerHTML = '<input type="text" name="NomProf">';
 			cell2.innerHTML = '<input type="text" name="Matière">';
 			cell3.innerHTML = '<input type="text" name="EmailProf">';
-			cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+			cell4.innerHTML = '<img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
           }
 		  
 		  function addNewRow_tableEleveClasse() {
@@ -259,7 +259,7 @@
 			var cell3 = row.insertCell(2);
 			cell1.innerHTML = '<input type="text" name="NomEleve">';
 			cell2.innerHTML = '<input type="text" name="Email">';
-			cell3.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+			cell3.innerHTML = '<img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
           }
 		
 		 function removeRow(tableID, row)

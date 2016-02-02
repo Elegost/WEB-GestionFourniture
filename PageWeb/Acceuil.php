@@ -1,6 +1,6 @@
 <?php
 	  session_start();
-	  include('logger.php');
+	  //include('../logger.php');
 ?>
 <html>
 
@@ -15,14 +15,14 @@
    
 </head>
 <body>
-	<img id="logo" src="Image/logo.jpg" >
+	<img id="logo" src="../Image/logo.jpg" >
    
    <div class="BlocLogin" align='center'>
-    	<form method="get" action="connect.php">
+    	<form method="get" action="../Connect.php">
 		<label for="login" class="LabelLogin" >login : </label><input type="text" name="login"><br>
     	<label for="password" id="LabelPassword">password : </label><input type="password" name="Password"><br>
 			<INPUT  id="btnSeConnecter" class="BtnSeConnecter" TYPE="submit" VALUE="Se connecter">
-		</FORM>
+		</form>
     </div>
 </body>
 

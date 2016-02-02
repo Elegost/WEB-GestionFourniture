@@ -15,14 +15,14 @@
 
 <body>
  <div class="BlocHeader">
-		 <img id="logo" src="Image/logo.jpg" >
+		 <img id="logo" src="../Image/logo.jpg" >
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
 		<label id="IdUser" for="IdUser"> Voici la page du Graphique Mr : <?php echo $_SESSION['Email'];?> </label>
 	</div>
 <?php
-    include('connexion.php');
+    include('../connexion.php');
 		$email=$_SESSION['Email'];
 	$email=$conn->real_escape_string($email);
 	$test="SELECT Droit from connection where Email='$email'";

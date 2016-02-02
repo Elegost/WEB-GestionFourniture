@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_GET['login']) && !isset($_GET['Password']))
 {
-	header('location : Acceuil.php');
+	header('location : ./PageWeb/Acceuil.php');
 	
 }
 else
@@ -12,7 +12,7 @@ else
 	// if(!preg_match('/^[[:alnum:]]+$/',$_GET['login']) or !preg_match('/^[[:alnum:]]+$/',$_GET['Password']))
 	{
 		echo 'Vous devez entrer uniquement des lettres ou des chiffres <br/>';
-		echo '<a href=Acceuil.php" temp_href="Acceuil.php">Réessayer</a>';
+		echo '<a href=./PageWeb/Acceuil.php" temp_href="./PageWeb/Acceuil.php">Réessayer</a>';
 		exit();
 	}
 	else
@@ -38,7 +38,7 @@ else
 	if(mysqli_num_rows($requete1)==0)
 	{
 		echo 'Ce login est faux ! <br/> ';
-		echo '<a href="Acceuil.php" temp_href="Acceuil.php">Réessayer</a>';
+		echo '<a href="./PageWeb/Acceuil.php" temp_href="./PageWeb/Acceuil.php">Réessayer</a>';
 		exit();
 	}
 	else
@@ -56,19 +56,19 @@ else
 			
 			$login=$_GET['login'];
 			$_SESSION['Email']=$login;
-			header('Location: GestionListeAdmin.php');
+			header('Location: ./PageWebAdmin/GestionListeAdmin.php');
 		}
 		elseif(($conn->real_escape_string($resultallow[0]==1)))
 		{
 			$login=$_GET['login'];
 			$_SESSION['Email']=$login;
-			header('Location: AffichageListe(Prof).php');
+			header('Location: ./PageWeb/AffichageListe(Prof).php');
 		}
 		elseif(($conn->real_escape_string($resultallow[0]==0)))
 		{
 			$login=$_GET['login'];
 			$_SESSION['Email']=$login;
-			header('Location:  AffichageListe.php');
+			header('Location:  ./PageWeb/AffichageListe.php');
 		}
 		
 	}
@@ -76,7 +76,7 @@ else
 	{
 		
 		echo 'Le Pass est faux ! <br/> ';
-		echo '<a href="Acceuil.php" temp_href="Acceuil.php">Réessayer</a>';
+		echo '<a href="/PageWeb/Acceuil.php" temp_href="/PageWeb/Acceuil.php">Réessayer</a>';
 		exit();
 	}
 	}

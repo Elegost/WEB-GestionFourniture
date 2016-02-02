@@ -16,7 +16,7 @@
 <body>
    
    <div class="BlocHeader">
-		 <img id="logo" src="Image/logo.jpg" >
+		 <img id="logo" src="../Image/logo.jpg" >
 		 <form action="Acceuil.php" method="post">
 			  <input id="ButtonSeDeconnecter" type="submit" value="Se déconnecter">
 		 </form>
@@ -29,7 +29,7 @@
 		 <select name="DDL_Matière" id="DDL_Matière" onChange="store_DDL_Matiere()">
 			<option>Toutes les Matières</option>
 			<?php
-			include('connexion.php');
+			include('../connexion.php');
 			$email=$_SESSION['Email'];
 			$email=$conn->real_escape_string($email);
 			$test="SELECT Droit from connection where Email='$email'";
@@ -85,7 +85,7 @@
 		 <input type="button" name="BtnResetFilter" id="BtnResetFilter" value="Remise à zéro" onclick="resetFilter()"/>
 	  </form><br/>
   
-	  <form id="insertFournitureForProf" action="insertFournitureForProf.php" method="post" >
+	  <form id="insertFournitureForProf" action="../FonctionsPhp/insertFournitureForProf.php" method="post" >
 	  <p class="cb">
 	  <?php
 		 $servername = "localhost";
@@ -162,7 +162,7 @@
 	  </div>
 
 
-   <script src="Cookie.js"></script>
+   <script src="../Cookie.js"></script>
    <script type="text/javascript">
 	  document.getElementById("BtnAjouterFourniture").addEventListener("click", addNewRow);
 	   
@@ -178,7 +178,7 @@
 		  cell1.innerHTML = '<input type="text" name="Intitule[]">';
 		  cell2.innerHTML = '<input type="text" name="Quantite[]">';
 		  cell3.innerHTML = '<input type="text" name="Description[]">';
-		  cell4.innerHTML = '<img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
+		  cell4.innerHTML = '<img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
 	  }
 		
 	  function removeRow(row)
