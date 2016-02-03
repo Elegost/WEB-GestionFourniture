@@ -31,7 +31,9 @@
 	  </div>
 	  
 	  <div id="BlocListeClasse" class="BlocListeClasse" >
-		 <button id="BtnSupprimerClasse" type="button" > Supprimer classe(s) </button></br>
+		 <form action="../PageWebAdmin/GestionListeAdmin_SupprimerClasse.php" method="post">
+			  <input id="BtnSupprimerClasse" type="submit" value="Supprimer classe(s)">
+		 </form></br>
 		 <form id="FiltreListeClasse" name="FiltreListeClasse" method="post" action="">
  		 <select id="DDL_Niveau" name="DDL_Niveau" onChange="store_DDL_Niveau()" >
 
