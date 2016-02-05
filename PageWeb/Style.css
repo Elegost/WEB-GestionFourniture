@@ -206,3 +206,16 @@ input[id="ButtonSeDeconnecter"]
 {
     width: 10%;
 }
+
+.BlocListeClasseProfesseur
+{
+    Border : solid black 1px;
+    float: left;
+    Padding:10px;
+    width:30%;
+    height:90%;
+    margin: 10px;
+    overflow: auto;
+}
+
+

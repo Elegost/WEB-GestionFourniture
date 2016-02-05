@@ -60,7 +60,7 @@
 			   }
 			   $conn->close();
 			?>
-		 </select></br>
+		 </select>
 		 <input type="submit" name="submit" id="submit" value="Rechercher"/>
 		 <input type="button" name="BtnResetFilter" id="BtnResetFilter" value="Remise à zéro" onclick="resetFilter()"/>
 		 </form>
@@ -98,7 +98,6 @@
 	  </div>
 	  
 	  <div id="BlocListeProfesseur" class="BlocListeProfesseur" style="display:none">
-		 <button id="BtnSupprimerProfesseur" type="button" > Supprimer professeur(s) sélectionné(s)</button></br>
 		 
 		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
 		   <option>Toutes les Matières</option>
@@ -199,27 +198,6 @@
 					</tr>
 			  </table>
 		  </div>
-	  
-	  <div id="BlocCreationListeProfesseur" class="BlocCreationListeProfesseur" style="display:none">
-			  <table id="table_ajoutprofesseur" class="TableCreation" >
-				  <label id="label_IdTableau">Liste des professeurs à ajouter</label>
-					<tr>
-					  <th>M. / Mme.</th>
-					  <th>Matière</th>
-					  <th>Email</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="NomProf"></td>
-						<td><input type="text" name="MatiereProf"></td>
-						<td><input type="text" name="EmailProf"></td>
-						<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(table_ajoutprofesseur, this)"/></td>
-					</tr>
-				  
-					<tr>
-					  <td colspan=3><button id="BtnAjouterProfesseur" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableajoutprofesseur()"> + </button></td>
-					</tr>
-			  </table>
-		  </div>
 	  </form>
    </div>
    <script type="text/javascript">  
@@ -284,6 +262,8 @@
 			div.style.display = "inline";
 			div = document.getElementById("BlocCreationListeProfesseur");
 			div.style.display = "none";
+			var btn = document.getElementById("BtnValiderListe");
+			btn.style.display = "inline";
          }
 		 
 		 function handleButtonClick_AfficherProfesseur() {
@@ -295,6 +275,8 @@
 			div.style.display = "none";
 			div = document.getElementById("BlocCreationListeProfesseur");
 			div.style.display = "inline";
+			var btn = document.getElementById("BtnValiderListe");
+			btn.style.display = "none";
          }
 		 
 		 function createCSV()

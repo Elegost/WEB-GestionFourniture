@@ -26,6 +26,8 @@
 	
    	<div class="BlocAffichageListe">
 	  <a href="GestionListe.php"><button id="ButtonAjouterListe" type="button" class="BtnDivEdition">Ajouter liste</button></a>
+	  <a href="GestionListe_SupprimerListeFourniture.php"><button id="ButtonAjouterListe" type="button" class="BtnDivEdition">Supprimer liste</button></a>
+
 	  
 	  <?php
 	  $i=0;
@@ -57,7 +59,6 @@
 				 echo "<tr>";
 				 echo "<td>" .$row["INTITULE"]. "</td>";
 				 echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="../Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
-				 echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Supprimer"/></td>';
 				 echo "</tr>";
 				 echo "</table>";
 				 
