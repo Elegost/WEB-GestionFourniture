@@ -102,6 +102,15 @@ a{
 	margin:5px;
 }
 
+#ButtonSupprimerListe
+{
+    border-radius:12px;
+    margin:auto;
+    display:block;
+	padding:5px 5px;
+	margin:5px;
+}
+
 .icone_table
 {
     height: 15px;

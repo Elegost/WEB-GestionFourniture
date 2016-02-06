@@ -25,8 +25,9 @@
 	</div>
 	
    	<div class="BlocAffichageListe">
+	  <form action="../PageWeb/GestionListe_Modif.php" method="post">
 	  <a href="GestionListe.php"><button id="ButtonAjouterListe" type="button" class="BtnDivEdition">Ajouter liste</button></a>
-	  <a href="GestionListe_SupprimerListeFourniture.php"><button id="ButtonAjouterListe" type="button" class="BtnDivEdition">Supprimer liste</button></a>
+	  <a href="GestionListe_SupprimerListeFourniture.php"><button id="ButtonSupprimerListe" type="button" class="BtnDivEdition">Supprimer liste</button></a>
 
 	  
 	  <?php
@@ -44,7 +45,7 @@
 	  $sql="SELECT IDClasse from professeur where Mail='$email'";
 	  $result1=$conn->query($sql);
 	  $result1=mysqli_fetch_array($result1);
-	  $sql = "SELECT classe.intitule as INTITULE FROM classe WHERE classe.IDClasse = $result1[0]";
+	  $sql = "SELECT INTITULE, IDCLASSE FROM classe WHERE classe.IDClasse = $result1[0]";
 	  $result = $conn->query($sql);						
 	  if ($result && $result->num_rows > 0)
 	  {
@@ -58,7 +59,7 @@
 				 
 				 echo "<tr>";
 				 echo "<td>" .$row["INTITULE"]. "</td>";
-				 echo '<td class="RowTableEdition"><a href="GestionListe.php"><img id="ButtonEditer" src="../Image/editer.png" class="icone_table" alt="Editer"/></a></td>';
+				 echo '<td class="RowTableEdition"><input type="submit" id="ButtonEditer" class="icone_table" style="background:url(../Image/editer.png); height:30px; width:30px; no-repeat;border:none;" name="ModifListe" value=' . $row["IDCLASSE"] . ' /></td>';
 				 echo "</tr>";
 				 echo "</table>";
 				 
@@ -94,6 +95,7 @@
 	  $conn->close();
 	  ?>
 	 </table>
+	 </form>
    	</div>
    </body>
 
