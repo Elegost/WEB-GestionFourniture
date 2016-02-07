@@ -160,6 +160,7 @@
 			  </table>
 		  </div>
 	  </div>
+   
 
 
    <script src="../Cookie.js"></script>
@@ -217,7 +218,6 @@
 	  var DDL_Classe = document.getElementById("DDL_Classe");
 	  if (field2 = getCookie("DDL_Classe_index")) DDL_Classe.selectedIndex = field2;
 	 </script>
-	 </form>
 
 </body>
 
