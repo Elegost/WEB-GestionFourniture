@@ -1,5 +1,5 @@
 <?php
-    $handle = fopen("liste_eleve.csv", "w");
+    $handle = fopen("../liste_eleve.csv", "w");
     $servername = "localhost";
     $username = "root";
     $password = "root";

@@ -30,7 +30,7 @@
 	  if(isset($_POST['Description'])) $Description = $_POST['Description'];
 	  $Quantite = null;
 	  if(isset($_POST['Quantite'])) $Quantite = $_POST['Quantite'];
-	  
+
         foreach($Intitule as $i => $tabIntitule)
         {
               $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)

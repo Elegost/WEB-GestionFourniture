@@ -152,7 +152,7 @@
 					  <td><input type="text" name="Intitule[]"></td>
 					  <td><input type="text" name="Quantite[]"></td> 
 					  <td><input type="text" name="Description[]"></td>
-					  <td><img id="ButtonSupprimer" src="Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
+					  <td><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
 					</tr>
 					<tr>
 					  <td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button"> + </button></td>

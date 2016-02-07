@@ -63,7 +63,7 @@
 				  {
 						foreach($NomEleve as $i => $idEleve)
 						{
-							  $sql = "INSERT INTO Professeur (Nom, Mail, IDClasse)
+							  $sql = "INSERT INTO ELEVE (Nom, Mail, IDClasse)
 									Values ('$idEleve', '$MailEleve[$i]', $IDClasse)";
 							  echo "$sql <br />";
 							  if(!mysqli_query($conn, $sql))

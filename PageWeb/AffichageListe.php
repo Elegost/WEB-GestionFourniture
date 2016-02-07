@@ -63,8 +63,8 @@ session_start();
 						   echo "</tr>";
 						   
 						   $sql2 = "SELECT Intitule, Quantite, Description FROM Fourniture WHERE IDClasse = (SELECT IDClasse FROM Eleve WHERE Mail = '$mail') AND IDProfesseur = (SELECT IDProfesseur FROM Professeur WHERE Professeur.Nom = '" . $row["Nom"]. "')";
-						   $result2 = $conn->query($sql2);						
-						   if ($result2->num_rows > 0)
+						   $result2 = $conn->query($sql2);
+						   if ($result2 && $result2->num_rows > 0)
 						   {
 							  
 							   while($row2 = $result2->fetch_assoc())
@@ -87,7 +87,7 @@ session_start();
 					 }
 					 else
 					 {
-						 echo "<tr><td colspan=3> 0 results </td></tr>";
+						 echo "<tr><td colspan=3> 0 results </td></tr>";	 							   
 					 }
 					 $conn->close();
 				  ?>

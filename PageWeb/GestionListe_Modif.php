@@ -32,7 +32,7 @@
 				  <label id="label_IdTableau">Liste des fournitures</label>
 					<tr>
 					  <th>Intitulé</th>
-					  <th>Nombre</th> 
+					  <th>Nombre</th>
 					  <th>Description</th>
 					</tr>
                     <?php
@@ -65,7 +65,7 @@
 					  <td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button"> + </button></td>
 					</tr>
 			  </table>
-              <?php echo '<input type="text" name="IDCLASSE" value="' . $idClasse .'" style="Fdisplay:none">' ?>
+              <?php echo '<input type="text" name="IDCLASSE" value="' . $idClasse .'" style="display:none">' ?>
             <input id="BtnValiderListeFourniture" class="BtnValider" type="submit" value="Valider modification">
             <a href="AffichageListe(Prof).php"><button id="BtnAnnulerListeFourniture" type="button" class="BtnRetour"> Annuler </button></a>
         </div>

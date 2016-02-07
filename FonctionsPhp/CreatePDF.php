@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-require('fpdf.php');
+require('../fpdf.php');
 
 //Connect to your database
 $servername = "localhost";

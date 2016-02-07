@@ -3,7 +3,7 @@
 ?>
 <html>
 <head>
-   <title>Gestion de Liste (ADMIN)</title>
+   <title>Gestion de Liste (ADMIN) - Modifier</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
    <meta name="description" content="Squelette" />
    <meta name="keywords" content="Squelette,html,documentation" />
@@ -22,20 +22,10 @@
 
    <div class="BlocGestionListe">
 	  <div class="BlocListeClasseProfesseur">
-		 
-	  <div class="BlocSelectionListeClasseProfesseur">
-		 <button id="BtnAfficherListeClasse" type="button" onclick="handleButtonClick_AfficherClasse()"> Liste des classes </button>
-		 <button id="BtnAfficherListeProfesseurs" type="button" onclick="handleButtonClick_AfficherProfesseur()"> Liste des professeurs </button>
-		 <a href="GraphiqueAdmin.php"><button id="BtnGraphique" type="button">Graphique</button></a>
-		 <button id="BtnImportListeElèves" type="button" onclick="createCSV()"> Importer liste élèves </button>		 
-	  </div>
 	  
 	  <div id="BlocListeClasse" class="BlocListeClasse" >
-		 <form action="../PageWebAdmin/GestionListeAdmin_ModifierClasse.php" method="post">
-			  <input id="BtnModifierClasse" type="submit" value="modifier classe(s)">
-		 </form>
-		 <form action="../PageWebAdmin/GestionListeAdmin_SupprimerClasse.php" method="post">
-			  <input id="BtnSupprimerClasse" type="submit" value="Supprimer classe(s)">
+		 <form action="../PageWebAdmin/GestionListeAdmin.php" method="post">
+			  <input id="BtnModifierClasse" type="submit" value="Retour">
 		 </form></br>
 		 <form id="FiltreListeClasse" name="FiltreListeClasse" method="post" action="">
  		 <select id="DDL_Niveau" name="DDL_Niveau" onChange="store_DDL_Niveau()" >
@@ -67,7 +57,7 @@
 		 <input type="submit" name="submit" id="submit" value="Rechercher"/>
 		 <input type="button" name="BtnResetFilter" id="BtnResetFilter" value="Remise à zéro" onclick="resetFilter()"/>
 		 </form>
-		 
+		 <form action="../PageWebAdmin/GestionListeAdmin_ModifierClasse_Aff.php" method="post">
 		 <p class="cbClasse">
 			 <?php
 			include('../connexion.php');
@@ -85,8 +75,9 @@
 				while($row = $result->fetch_assoc())
 				{
 				  $row_IDClasse = (isset($row["IDClasse"]) ? $row["IDClasse"] : "");
-				  echo '<label><input type="checkbox" value="' . $row_IDClasse . ' ">';
-				  echo $row["INTITULE"] . "</br></label>";
+				  echo '<label><input type="checkbox" name="ModifListe" value="' . $row_IDClasse . ' ">';
+				  echo $row["INTITULE"] . "</label>";
+				  echo '<input type="submit" id="ButtonModifierClasse" class="icone_table" style="background:url(../Image/editer.png); height:30px; width:30px; no-repeat;border:none;" name="ModifListe" value=' . $row["IDCLASSE"] . ' /></br>';
 				}
 				echo '</div>';
 			}
@@ -99,107 +90,9 @@
 		 </p>
 	  </div>
 	  
-	  <div id="BlocListeProfesseur" class="BlocListeProfesseur" style="display:none">
-		 
-		 <select id="DDL_Matière" onChange="combo(this, 'theinput')" onMouseOut="comboInit(this, 'theinput')" >
-		   <option>Toutes les Matières</option>
-			<?php
-			   include('../connexion.php'); 						
-			   $sql = "SELECT DISTINCT Matiere FROM Professeur WHERE 1";
-			   $result = $conn->query($sql);						
-			   if ($result->num_rows > 0)
-			   {			
-				   while($row = $result->fetch_assoc())
-				   {
-					 echo "<option>" . $row["Matiere"] . "</option>";
-				   }
-			   }
-			   $conn->close();
-			?>
-		 </select>
-		 
-		 <form action="../FonctionsPhp/insertNewClasse.php" method="post">
-		 <p class="cbProfesseur">
-		 <?php
-			include('../connexion.php');
-			$sql = "SELECT Nom, Matiere FROM Professeur WHERE 1";
-			if (isset($DDL_Matière) && $DDL_Matière != '')
-			   $sql .= " AND Matiere='$DDL_Matière'";
-			if (isset($DDL_Classe) && $DDL_Classe != '')
-			   $sql .= " AND Classe='$DDL_Classe'";
-			$result = $conn->query($sql);						
-			if ($result->num_rows > 0)
-			{			
-				while($row = $result->fetch_assoc())
-				{
-				  echo '<input type="checkbox">';
-				  echo $row["Nom"] . "(" . $row["Matiere"] . ")";
-				  echo "</br>";
-				}
-			}
-			else
-			{
-				echo "0 results";
-			}
-			$conn->close();
-		 ?>
-		 </p>
-	  </div>
-	  
 	  <button id="BtnValiderListe" name="submit" type="submit" class="BtnValider" value="ButtonValider"> Valider </button>
-
-	  </div>
-	  
-	  <div id="BlocCreationListeClasse" class="BlocCreationListeClasse" >
-		 <table class="TableCreation" >
-			 <label id="label_IdTableau">Nouvelle classe</label>
-			   <tr>
-				 <th>Intitulé</th>
-				 <th>Niveau</th>
-			   </tr>
-		 
-		 <tr>
-			 <td><input type="text" name="intituleClasse"></td>
-			 <td><input type="text" name="niveauClasse"></td>
-			 <td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
-		 </tr>
-		 </table>
-		 <table id="Table_professeurClasse" class="TableCreation" >
-			<label id="label_IdTableau">Liste des professeurs lié à la classe</label>
-			  <tr>
-				<th>M. / Mme.</th>
-				<th>Matière</th>
-				<th>Email</th>
-			  </tr>
-			  <tr>
-				  <td><input type="text" name="NomProf[]"></td>
-				  <td><input type="text" name="MatiereProf[]"></td>
-				  <td><input type="text" name="MailProf[]"></td>
-				  <td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_classe, this)"/></td>
-			  </tr>	
-			  <tr>
-				<td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableprofesseurClasse()"> + </button></td>
-			  </tr>
-		</table>
-			   
-			    <table id="Table_eleveClasse" class="TableCreation" >
-				  <label id="label_IdTableau">Liste des élèves de la classe</label>
-					<tr>
-					  <th>M. / Mme.</th>
-					  <th>Email</th>
-					</tr>
-					<tr>
-						<td><input type="text" name="NomEleve[]"></td>
-						<td><input type="text" name="MailEleve[]"></td>
-						<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(Table_eleveClasse, this)"/></td>
-					</tr>			
-					<tr>
-					  <td colspan=2><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableEleveClasse()"> + </button></td>
-					</tr>
-			  </table>
-		  </div>
 	  </form>
-   </div>
+	  </div>
    <script type="text/javascript">  
 		 function addNewRow_tableajoutprofesseur()
 		 {
