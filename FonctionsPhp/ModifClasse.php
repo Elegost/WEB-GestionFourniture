@@ -1,8 +1,8 @@
 <?php
-	  //session_start();
+	  session_start();
 ?>
 <?php
-   /* $servername = "localhost";
+    $servername = "localhost";
     $username = "root";
     $password = "root";
     $dbname = "GestionFourniture";						
@@ -21,7 +21,7 @@
         if(isset($_POST['intituleClasse'])) $intituleClasse = $_POST['intituleClasse'];
         $niveauClasse = null;
         if(isset($_POST['niveauClasse'])) $niveauClasse = $_POST['niveauClasse'];       
-        $sql = "INSERT INTO classe(IDClasse, Intitule, Niveau) VALUES ($idClasse, '$intituleClasse', '$niveauClasse')";
+        $sql = "UPDATE classe SET Niveau = '$niveauClasse', Intitule = '$intituleClasse' WHERE IDCLASSE = $idClasse";
         if(!mysqli_query($conn, $sql))
         {
             echo("Description erreur : " . mysqli_error($conn));           
@@ -35,10 +35,12 @@
         if(isset($_POST['MatiereProf'])) $MatiereProf = $_POST['MatiereProf'];
         $MailProf = null;
         if(isset($_POST['MailProf'])) $MailProf = $_POST['MailProf'];
+        $idProfesseur = null;
+        if(isset($_POST['IDProfesseur'])) $idProfesseur = $_POST['IDProfesseur'];
+        
             foreach($NomProf as $i => $idProf)
             {
-                  $sql = "INSERT INTO Professeur (Nom, Matiere, Mail, IDClasse)
-                        Values ('$idProf', '$MatiereProf[$i]', '$MailProf[$i]', $idClasse)";              
+                  $sql = "UPDATE Professeur SET Nom = '$idProf', Matiere = '$MatiereProf[$i]', Mail = '$MailProf[$i]' WHERE IDProfesseur = $idProfesseur[$i] ";              
                   if(!mysqli_query($conn, $sql))
                   {
                       echo("Description erreur : " . mysqli_error($conn));           
@@ -50,11 +52,13 @@
         $NomEleve = null;
         if(isset($_POST['NomEleve'])) $NomEleve = $_POST['NomEleve'];
         $MailEleve = null;
-        if(isset($_POST['MailEleve'])) $MailEleve = $_POST['MailEleve'];       
+        if(isset($_POST['MailEleve'])) $MailEleve = $_POST['MailEleve'];
+        $idEleve2 = null;
+        if(isset($_POST['IDEleve'])) $idEleve2 = $_POST['IDEleve'];
+
             foreach($NomEleve as $i => $idEleve)
             {
-                  $sql = "INSERT INTO ELEVE (Nom, Mail, IDClasse)
-                    Values ('$idEleve', '$MailEleve[$i]', $idClasse)";        
+                  $sql = "UPDATE Eleve SET Nom = '$idEleve', Mail = '$MailEleve[$i]' WHERE IDEleve = $idEleve2[$i]";
                   if(!mysqli_query($conn, $sql))
                   {
                       echo("Description erreur : " . mysqli_error($conn));           
@@ -62,5 +66,5 @@
                       echo($sql);
                   }
             }
-	  $conn->close();*/
+	  $conn->close();
 ?>

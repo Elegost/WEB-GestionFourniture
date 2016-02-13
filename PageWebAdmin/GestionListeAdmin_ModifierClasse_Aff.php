@@ -54,9 +54,8 @@
             {
                 $row = $result->fetch_assoc();
                 echo "<tr>";
-                echo '<td><input type="text" name="intituleClasse" value=" ' . $row["INTITULE"] . '"></td>';
-                echo '<td><input type="text" name="niveauClasse" value=" ' . $row["NIVEAU"] . '"></td>';
-                echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>';
+                echo '<td><input type="text" name="intituleClasse" value="' . $row["INTITULE"] . '"></td>';
+                echo '<td><input type="text" name="niveauClasse" value="' . $row["NIVEAU"] . '"></td>';
                 echo "</tr>"; 
             }
             else
@@ -79,17 +78,17 @@
                 $email=$conn->real_escape_string($email);
                 $idClasse = null;
                 if(isset($_POST['ModifListe'])) $idClasse = $_POST['ModifListe'];                        
-                $sql = "SELECT NOM, MATIERE, MAIL FROM Professeur WHERE IDCLASSE=$idClasse";
+                $sql = "SELECT NOM, MATIERE, MAIL, IDPROFESSEUR FROM Professeur WHERE IDCLASSE=$idClasse";
                 $result = $conn->query($sql);						
                 if ($result && $result->num_rows > 0)
                 {
                     while($row = $result->fetch_assoc())
                     {
                         echo "<tr>";
-                        echo '<td><input type="text" name="NomProf[]" value=" ' . $row["NOM"] . '"></td>';
-                        echo '<td><input type="text" name="MatiereProf[]" value=" ' . $row["MATIERE"] . '"></td>';
-                        echo '<td><input type="text" name="MailProf[]" value=" ' . $row["MAIL"] . '"></td>';
-                        echo '<td class="RowTableEdition"><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>';
+                        echo '<td><input type="text" name="NomProf[]" value="' . $row["NOM"] . '"></td>';
+                        echo '<td><input type="text" name="MatiereProf[]" value="' . $row["MATIERE"] . '"></td>';
+                        echo '<td><input type="text" name="MailProf[]" value="' . $row["MAIL"] . '"></td>';
+						echo '<td style="display:none"><input type="text" name="IDProfesseur[]" value="'.$row["IDPROFESSEUR"].'"></td>';
                         echo "</tr>"; 
                     }
                 }
@@ -99,9 +98,6 @@
                 }
                 $conn->close();
             ?>
-			  <tr>
-				<td colspan=3><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableprofesseurClasse()"> + </button></td>
-			  </tr>
 		</table>
 			   
 			    <table id="Table_eleveClasse" class="TableCreation" >
@@ -116,16 +112,16 @@
                         $email=$conn->real_escape_string($email);
                         $idClasse = null;
                         if(isset($_POST['ModifListe'])) $idClasse = $_POST['ModifListe'];                        
-                        $sql = "SELECT NOM, MAIL FROM ELEVE WHERE IDCLASSE=$idClasse";
+                        $sql = "SELECT NOM, MAIL, IDELEVE FROM ELEVE WHERE IDCLASSE=$idClasse";
                         $result = $conn->query($sql);						
                         if ($result && $result->num_rows > 0)
                         {
                             while($row = $result->fetch_assoc())
                             {
                                 echo "<tr>";
-                                echo '<td><input type="text" name="NomEleve[]" value=" ' . $row["NOM"] . '"></td>';
-                                echo '<td><input type="text" name="MailEleve[]" value=" ' . $row["MAIL"] . '"></td>';
-                                echo '<td><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>';
+                                echo '<td><input type="text" name="NomEleve[]" value="' . $row["NOM"] . '"></td>';
+                                echo '<td><input type="text" name="MailEleve[]" value="' . $row["MAIL"] . '"></td>';
+								echo '<td style="display:none"><input type="text" name="IDEleve[]" value="'.$row["IDELEVE"].'"></td>';
                                 echo "</tr>"; 
                             }
                         }
@@ -135,16 +131,13 @@
                         }
                         $conn->close();
                     ?>
-					<tr>
-					  <td colspan=2><button id="BtnAjouterFourniture" class="BtnAddNewRowTable" type="button" onclick="addNewRow_tableEleveClasse()"> + </button></td>
-					</tr>
 			  </table>
 		  </div>
 	        <?php echo '<input type="text" name="IDCLASSE" value="' . $idClasse .'" style="display:none">'; ?>
 	  </form>
    </div>
    <script type="text/javascript">  
-		 function addNewRow_tableajoutprofesseur()
+		 /*function addNewRow_tableajoutprofesseur()
 		 {
 			var table = document.getElementById("table_ajoutprofesseur");
 			var rowCount = table.rows.length;
@@ -225,7 +218,7 @@
 		 function createCSV()
 		 {
 			window.location.assign('CreateCSV.php');
-		 }	 
+		 }	*/ 
 		 
 		 /*function store_DDL_Niveau()  
 		 {
