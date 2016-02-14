@@ -21,8 +21,7 @@
 	  $Description = null;
 	  if(isset($_POST['Description'])) $Description = $_POST['Description'];
 	  $Quantite = null;
-	  if(isset($_POST['Quantite'])) $Quantite = $_POST['Quantite'];
-	  
+	  if(isset($_POST['Quantite'])) $Quantite = $_POST['Quantite'];	  
 
 	if ($cbClasse)
 	{
@@ -30,13 +29,17 @@
 	  {
 			foreach($Intitule as $i => $tabIntitule)
 			{
-				  $sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
-						  Values ('$tabIntitule', '$Description[$i]', $Quantite[$i], $idClasse, (SELECT IDProfesseur FROM Professeur WHERE MAIL='$mail' AND IDClasse=$cbClasse[$i]))";
-				  if(!mysqli_query($conn, $sql))
+				  if($tabIntitule != "" && $Description[$i] != "" && $Quantite[$i] != "")
 				  {
-					  echo("Description erreur : " . mysqli_error($conn));
-					  echo($sql);
-					  echo "</br>";
+						$sql = "INSERT INTO FOURNITURE (Intitule, Description, Quantite, IDClasse, IDProfesseur)
+								Values ('$tabIntitule', '$Description[$i]', $Quantite[$i], $idClasse, (SELECT IDProfesseur FROM Professeur WHERE MAIL='$mail' AND IDClasse=$idClasse))";
+						if(!mysqli_query($conn, $sql))
+						{
+							echo("Description erreur : " . mysqli_error($conn));
+							
+						}
+						echo($sql);
+							echo "</br>";
 				  }
 			}
 	  }

@@ -149,9 +149,21 @@
 					  <th>Description</th>
 					</tr>
 					<tr>
-					  <td><input type="text" name="Intitule[]"></td>
-					  <td><input type="text" name="Quantite[]"></td> 
-					  <td><input type="text" name="Description[]"></td>
+					  <td><input id="inputIntitule" type="text" name="Intitule[]"></td>
+					  <td><input id="inputQuantite"  type="text" name="Quantite[]"></td> 
+					  <td><input id="inputDescription" type="text" name="Description[]"></td>
+					  <td><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
+					</tr>
+					<tr>
+					  <td><input id="inputIntitule" type="text" name="Intitule[]"></td>
+					  <td><input id="inputQuantite" type="text" name="Quantite[]"></td> 
+					  <td><input id="inputDescription" type="text" name="Description[]"></td>
+					  <td><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
+					</tr>
+					<tr>
+					  <td><input id="inputIntitule" type="text" name="Intitule[]"></td>
+					  <td><input id="inputQuantite" type="text" name="Quantite[]"></td> 
+					  <td><input id="inputDescription" type="text" name="Description[]"></td>
 					  <td><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>
 					</tr>
 					<tr>
@@ -161,9 +173,6 @@
 		  </div>
 	  </div>
    
-
-
-   <script src="../Cookie.js"></script>
    <script type="text/javascript">
 	  document.getElementById("BtnAjouterFourniture").addEventListener("click", addNewRow);
 	   
@@ -173,12 +182,24 @@
 		  var rowCount = table.rows.length;
 		  var row = table.insertRow(rowCount - 1);
 		  var cell1 = row.insertCell(0);
+			var elt = document.createElement("input");
+			elt.id = "inputIntitule";
+			elt.type = "text";
+			elt.name = "Intitule[]";
+			cell1.appendChild(elt);
 		  var cell2 = row.insertCell(1);
+			var elt = document.createElement("input");
+			elt.id = "inputQuantite";
+			elt.type = "text";
+			elt.name = "Quantite[]";
+			cell2.appendChild(elt);
 		  var cell3 = row.insertCell(2);
+			var elt = document.createElement("input");
+			elt.id = "inputDescription";
+			elt.type = "text";
+			elt.name = "Description[]";
+			cell3.appendChild(elt);
 		  var cell4 = row.insertCell(3);
-		  cell1.innerHTML = '<input type="text" name="Intitule[]">';
-		  cell2.innerHTML = '<input type="text" name="Quantite[]">';
-		  cell3.innerHTML = '<input type="text" name="Description[]">';
 		  cell4.innerHTML = '<img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/>';
 	  }
 		

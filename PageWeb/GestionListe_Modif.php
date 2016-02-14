@@ -48,9 +48,9 @@
                             while($row = $result->fetch_assoc())
                             {
                                 echo "<tr>";
-                                echo '<td><input type="text" name="Intitule[]" value=" ' . $row["Intitule"] . '"></td>';
-                                echo '<td><input type="text" name="Quantite[]" value=" ' . $row["Quantite"] . '"></td>';
-                                echo '<td><input type="text" name="Description[]" value=" ' . $row["Description"] . '"></td>';
+                                echo '<td><input type="text" name="Intitule[]" value="' . $row["Intitule"] . '"></td>';
+                                echo '<td><input type="text" name="Quantite[]" value="' . $row["Quantite"] . '"></td>';
+                                echo '<td><input type="text" name="Description[]" value="' . $row["Description"] . '"></td>';
                                 echo '<td><img id="ButtonSupprimer" src="../Image/supprimer.png" class="icone_table" alt="Editer" onclick="removeRow(this)"/></td>';
                                 echo "</tr>"; 
                             }
